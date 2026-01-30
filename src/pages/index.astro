@@ -1,8 +1,82 @@
 ---
+import { Image } from "astro:assets";
+import TechStackCard from "@/components/ui/tech-stack-card.astro";
 import BaseLayout from "@/layouts/base-layout.astro";
-import HomeLayout from "@/layouts/home-layout";
+import { loadInfoData } from "@/lib/data-loaders/info";
+
+const referLinks = [
+  {
+    description: "See my projects in detail.",
+    url: "/projects",
+    title: "Projects",
+  },
+  {
+    description: "Learn more about my experience.",
+    url: "/",
+    title: "About",
+  },
+  {
+    description: "See my resume.",
+    url: "/resume",
+    title: "Resume",
+  },
+  {
+    description: "Read my blogs.",
+    url: "/blog",
+    title: "Blogs",
+  },
+  {
+    description: "See some of my friends.",
+    url: "/friends",
+    title: "Friends",
+  },
+  {
+    description: "See my GitHub profile.",
+    url: "https://github.com/arv-anshul",
+    title: "GitHub",
+  },
+];
+
+const info = await loadInfoData();
 ---
 
 <BaseLayout title="Home - ARV">
-  <HomeLayout />
+  <div
+    class="mb-10 flex flex-1 flex-col items-center justify-center px-4 py-8 text-center"
+    ,
+  >
+    <Image
+      alt="arv-anshul"
+      class:list="w-60 rounded-full"
+      inferSize={true}
+      src={info.avatar_url}
+    />
+    <h1 class="mt-5 font-extrabold text-3xl">{info.name}</h1>
+    <p class="mt-10 text-justify md:max-w-2/3">{info.intro_text}</p>
+
+    <div class="mt-10 min-w-10/12 grid-cols-1 md:min-w-2/3">
+      <h2 class="font-bold text-2xl text-fd-foreground" id="refer-to">
+        Refer To
+      </h2>
+      <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {referLinks.map((item) => (
+                        <a class="rounded-xl border p-4" href={item.url}>
+                            <h3 class="font-bold">{item.title}</h3>
+                            <p class="text-xs">{item.description}</p>
+                        </a>
+                    ))}
+      </div>
+    </div>
+
+    <div class="mt-10 min-w-10/12 grid-cols-1 md:min-w-2/3">
+      <h2 class="prose font-bold text-2xl text-fd-foreground" id="tech-stack">
+        Tech Stack
+      </h2>
+      <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {Object.entries(info.tech_stack).map(([category, items]) => (
+                        <TechStackCard category={category} items={items} />
+                    ))}
+      </div>
+    </div>
+  </div>
 </BaseLayout>
