@@ -14,5 +14,5 @@ repos:
         name: ultracite
         entry: bun x ultracite fix
         language: system
-        types_or: [javascript, jsx, ts, tsx, json, css]
+        types_or: [javascript, jsx, ts, tsx, json, css, astro]
         pass_filenames: false
