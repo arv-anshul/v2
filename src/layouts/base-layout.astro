@@ -6,11 +6,17 @@ interface Props {
   title: string;
   description?: string;
   className?: string;
+  nav?: {
+    sticky?: boolean;
+  };
 }
 
 const {
   title = "ARV - Website",
   description = "Personal website of ARV built with Astro.",
+  nav = {
+    sticky: false,
+  },
   className,
 } = Astro.props as Props;
 ---
@@ -26,7 +32,7 @@ const {
     <title>{title}</title>
   </head>
   <body class:list={["relative w-full", className]}>
-    <Navbar sticky />
+    <Navbar sticky={nav.sticky} />
     <slot />
   </body>
 </html>
