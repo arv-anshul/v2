@@ -2,7 +2,8 @@ import { z } from "zod";
 import { iconSchema, socialProfileSchema } from "./common";
 
 const projectSchema = z.object({
-  primary_url: z.string(), // Not any strict UrlType because this can be a relative url too.
+  // This should be a relative url from the base of the site (that's why startsWith "/")
+  relative_url: z.string().startsWith("/").nullable(),
   title: z.string(),
   description: z.string(),
   highlights: z.array(z.string()).min(3).optional(),

@@ -1,6 +1,7 @@
 ---
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import type { GetStaticPaths } from "astro";
+import Prose from "@/components/starwind/prose";
 import BaseLayout from "@/layouts/base-layout.astro";
 
 interface Props {
@@ -26,8 +27,10 @@ const { Content } = await render(project);
   <div
     class="flex flex-col flex-1 mx-auto md:max-w-3/5 items-center justify-center px-4 py-8"
   >
-    <article class="prose mt-10 w-full md:min-w-10/12">
-      <Content />
+    <article class="mt-10 w-full md:min-w-10/12">
+      <Prose>
+        <Content />
+      </Prose>
     </article>
   </div>
 </BaseLayout>

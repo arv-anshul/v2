@@ -18,6 +18,14 @@
     {
       "name": "separator",
       "version": "1.0.0"
+    },
+    {
+      "name": "card",
+      "version": "2.0.0"
+    },
+    {
+      "name": "button",
+      "version": "2.3.0"
     }
   ]
 }

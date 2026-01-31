@@ -1,6 +1,15 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { Icon } from "astro-icon/components";
+import { Button } from "@/components/starwind/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
 import type { ProjectsData } from "@/lib/data-loaders/projects";
 
 type Project = ProjectsData["projects"][number];
@@ -12,41 +21,41 @@ interface Props extends HTMLAttributes<"div"> {
 const { project, class: className, ...props } = Astro.props as Props;
 ---
 
-<div
-  class:list={["relative flex flex-col justify-between rounded-xl border bg-fd-card p-6", className]}
-  {...props}
->
-  <!-- Header -->
-  <div class="mb-2 flex flex-wrap justify-between items-start">
+<Card class:list={["justify-between", className]} {...props}>
+  <CardHeader class="flex flex-wrap justify-between items-start">
     <div>
-      <h3 class="text-xl font-semibold">{project.title}</h3>
-      <p class="text-sm text-fd-muted-foreground">{project.completed_on}</p>
+      <CardTitle class="flex items-center gap-1">
+        {project.relative_url && <a href={project.relative_url}>
+                <Icon name="lucide:external-link" size={15} class="rotate-270 hover:text-outline transition"/>
+            </a>}
+        {project.title}
+      </CardTitle>
+      <CardDescription class="text-sm">{project.completed_on}</CardDescription>
     </div>
-    <!-- URLs / Links -->
-    <div class="flex flex-wrap justify-center items-center gap-1">
+
+    <div class="flex gap-1">
       {project.urls.map((item) => (
-            <a
-              href={item.url}
-              class="inline-flex items-center text-lg p-1.5 border font-medium transition-colors hover:text-fd-primary bg-fd-accent rounded-md"
-              title={item.name}
+            <Button
+            size="icon-sm"
+            variant="outline"
+            href={item.url}
+            title={item.name}
             >
               <Icon name={item.icon} title={item.name} />
-            </a>
+            </Button>
           ))}
     </div>
-  </div>
+  </CardHeader>
 
-  <!-- Description -->
-  <p class="mb-4 text-justify">
+  <CardContent class="text-justify">
     {project.description.length > 320 ? `${project.description.slice(0, 320)}...` : project.description}
-  </p>
+  </CardContent>
 
-  <!-- Tags -->
-  <div class="flex flex-wrap justify-center gap-3">
+  <CardFooter class="flex-wrap justify-center gap-3">
     {project.tech_icons.map((tag) => (
           <span class="inline-flex items-center justify-center">
               <Icon name={tag} size={18} />
           </span>
         ))}
-  </div>
-</div>
+  </CardFooter>
+</Card>
