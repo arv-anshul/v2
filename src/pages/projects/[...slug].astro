@@ -1,0 +1,33 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "@/layouts/base-layout.astro";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("projects");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={`${project.data.title} - ARV`}
+  description={project.data.description}
+>
+  <div
+    class="flex flex-col flex-1 mx-auto md:max-w-3/5 items-center justify-center px-4 py-8"
+  >
+    <article class="prose mt-10 w-full md:min-w-10/12">
+      <Content />
+    </article>
+  </div>
+</BaseLayout>
