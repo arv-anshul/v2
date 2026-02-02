@@ -14,6 +14,7 @@ import remarkSmartypants from "remark-smartypants";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://arv-anshul.github.io",
   server: {
     port: 3000,
   },

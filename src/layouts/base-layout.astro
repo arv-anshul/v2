@@ -1,5 +1,6 @@
 ---
 import "@/styles/global.css";
+import { SEO } from "astro-seo";
 import Navbar from "@/components/ui/navbar.astro";
 
 interface Props {
@@ -27,9 +28,22 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width">
     <meta name="generator" content={Astro.generator}>
-    <meta name="title" , content={title}>
-    <meta name="description" , content={description}>
-    <title>{title}</title>
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+          basic: {
+            title: title,
+            type: "website",
+            // TODO: Use takumi or satori to create dynamic OG images for each route.
+            image: "https://repository-images.githubusercontent.com/743063632/6f3af08f-216b-4ab6-a2a4-e8165efc15d7",
+            url: Astro.url,
+          },
+          optional: {
+            description: description,
+          }
+        }}
+    />
   </head>
   <body class:list={["relative w-full", className]}>
     <Navbar sticky={nav.sticky} />
