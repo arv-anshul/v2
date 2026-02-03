@@ -1,0 +1,26 @@
+---
+import FriendCard from "@/components/friend-card.astro";
+import BaseLayout from "@/layouts/base-layout.astro";
+import { loadFriendsData } from "@/lib/data-loaders/friends";
+
+const { friends } = await loadFriendsData();
+---
+
+<BaseLayout title="Friends - ARV" description="Meet my awesome friends.">
+  <main
+    class="flex flex-col flex-1 items-center justify-center px-4 py-8 text-center"
+  >
+    <h1 class="font-extrabold text-3xl font-heading">Friends</h1>
+    <p class="text-xl text-muted-foreground">
+      Meet the awesome people and projects I follow.
+    </p>
+
+    <div
+      class="mt-10 w-10/12 md:max-w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4"
+    >
+      {friends.map((friend) => (
+      <FriendCard friend={friend} />
+    ))}
+    </div>
+  </main>
+</BaseLayout>

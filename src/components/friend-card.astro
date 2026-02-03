@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+import Button from "@/components/starwind/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardTitle,
+} from "@/components/starwind/card";
+import type { FriendsData } from "@/lib/data-loaders/friends";
+
+interface Props extends HTMLAttributes<"section"> {
+  friend: FriendsData["friends"][number];
+}
+
+const { friend, class: className, ...props } = Astro.props as Props;
+---
+
+<Card
+  class:list={[
+      "items-center gap-3",
+        className,
+    ]}
+  {...props}
+  data-card
+>
+  <a href={friend.primary_url} target="_blank" class="h-30 w-30">
+    <Image
+      inferSize={true}
+      src={friend.avatar}
+      alt={`${friend.name} avatar`}
+      class="rounded-full object-cover"
+    />
+  </a>
+
+  <CardContent>
+    <CardTitle class="text-lg font-bold">{friend.name}</CardTitle>
+    <CardDescription class="text-sm">{friend.profession}</CardDescription>
+  </CardContent>
+
+  <CardDescription class="text-sm leading-relaxed text-foreground px-3 mb-auto">
+    {friend.description}
+  </CardDescription>
+
+  <CardFooter
+    class="flex flex-wrap gap-2 justify-center w-full p-2 border-muted"
+  >
+    {friend.socials.map((social) => (
+                <Button
+                    href={social.url}
+                    title={social.name}
+                    target="_blank"
+                    variant="outline"
+                    size="icon-sm"
+                >
+                    <Icon name={social.icon} />
+                </Button>
+            ))}
+  </CardFooter>
+</Card>
