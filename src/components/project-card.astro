@@ -25,10 +25,10 @@ const { project, class: className, ...props } = Astro.props as Props;
   <CardHeader class="flex flex-wrap justify-between items-start">
     <div>
       <CardTitle class="flex items-center gap-1">
-        {project.relative_url && <a href={project.relative_url}>
-                <Icon name="lucide:external-link" size={15} class="rotate-270 hover:text-outline transition"/>
-            </a>}
-        {project.title}
+        {project.relative_url ?
+          <a href={project.relative_url}  class="flex items-center gap-1 hover:text-outline transition">
+            {project.title} <Icon name="lucide:link" size={15} />
+          </a> : project.title}
       </CardTitle>
       <CardDescription class="text-sm">{project.completed_on}</CardDescription>
     </div>
@@ -47,14 +47,14 @@ const { project, class: className, ...props } = Astro.props as Props;
     </div>
   </CardHeader>
 
-  <CardContent class="text-justify">
+  <CardContent class="text-justify mb-auto">
     {project.description.length > 320 ? `${project.description.slice(0, 320)}...` : project.description}
   </CardContent>
 
   <CardFooter class="flex-wrap justify-center gap-3 p-4 border-muted">
     {project.tech_icons.map((tag) => (
           <span class="inline-flex items-center justify-center">
-              <Icon name={tag} size={18} />
+              <Icon name={tag} />
           </span>
         ))}
   </CardFooter>
