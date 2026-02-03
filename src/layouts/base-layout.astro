@@ -1,7 +1,7 @@
 ---
 import "@/styles/global.css";
 import type { HTMLAttributes } from "astro/types";
-import { SEO } from "astro-seo";
+import { SEO, type SEOProps } from "astro-seo";
 import Navbar from "@/components/ui/navbar.astro";
 
 interface Props extends HTMLAttributes<"body"> {
@@ -10,6 +10,7 @@ interface Props extends HTMLAttributes<"body"> {
   nav?: {
     sticky?: boolean;
   };
+  seo?: SEOProps["openGraph"];
 }
 
 const {
@@ -19,6 +20,7 @@ const {
     sticky: false,
   },
   class: className,
+  seo,
   ...props
 } = Astro.props as Props;
 ---
@@ -42,7 +44,8 @@ const {
           },
           optional: {
             description: description,
-          }
+          },
+          ...seo,
         }}
     />
   </head>
