@@ -49,7 +49,7 @@ tech_stack:
       icon: simple-icons:mysql
     - name: Redis
       icon: simple-icons:redis
-  Dev Tools:
+  Development Tools:
     - name: pre-commit
       icon: simple-icons:precommit
     - name: Starship
@@ -101,7 +101,7 @@ tech_stack:
       icon: simple-icons:uv
     - name: Scrapy
       icon: simple-icons:scrapy
-  Frontend Tools:
+  Web Development:
     - name: ShadCN UI
       icon: simple-icons:shadcnui
     - name: Tailwind CSS
@@ -110,3 +110,9 @@ tech_stack:
       icon: simple-icons:vite
     - name: VueJs
       icon: simple-icons:vuedotjs
+    - name: Astro
+      icon: simple-icons:astro
+    - name: React
+      icon: simple-icons:react
+    - name: Bun
+      icon: simple-icons:bun
