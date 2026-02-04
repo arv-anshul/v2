@@ -34,6 +34,8 @@ const {
     <SEO
       title={title}
       description={description}
+      removeTrailingSlashForRoot
+      canonical={Astro.url.toString().replace(/\/$/, "")}
       openGraph={{
           basic: {
             title: title,

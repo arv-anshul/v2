@@ -43,7 +43,7 @@ async function getImageBuffer(
         <!-- Description -->
         <p tw="text-2xl mb-auto text-zinc-400 leading-relaxed overflow-hidden"> ${data.description} </p>
         <!-- Footer -->
-        <p tw="text-zinc-600 text-2xl mb-0 text-end">${url.replace(".webp", "")}</p>
+        <p tw="text-zinc-600 text-2xl mb-0 text-end">${url.replace("/og.webp", "")}</p>
       </div>
   `;
 
