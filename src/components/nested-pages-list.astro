@@ -1,0 +1,102 @@
+---
+import type { CollectionEntry } from "astro:content";
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "astro-icon/components";
+
+interface Page {
+  id: string;
+  data: CollectionEntry<"projects">["data"];
+}
+
+interface Props extends HTMLAttributes<"nav"> {
+  pages: Page[];
+}
+
+const { pages, class: className } = Astro.props;
+
+// Normalize URLs for comparison (remove trailing slashes)
+const NORMALIZED_URL_REGEX = /\/$/;
+const removeTrailingSlash = (url: string) =>
+  url.replace(NORMALIZED_URL_REGEX, "");
+
+// Sort pages: index first, then by date (newest first) or title
+const sortedPages = [...pages].sort((a, b) => {
+  // Index page always first
+  if (!removeTrailingSlash(a.id).includes("/")) {
+    return -1;
+  }
+  if (!removeTrailingSlash(b.id).includes("/")) {
+    return 1;
+  }
+
+  // Then sort by date if available
+  if (a.data.date && b.data.date) {
+    return b.data.date.getTime() - a.data.date.getTime();
+  }
+
+  // Finally sort alphabetically by title
+  return a.data.title.localeCompare(b.data.title);
+});
+---
+
+<nav class={className}>
+  <ul class="space-y-1" role="list">
+    {sortedPages.map((page) => {
+      const isActive = removeTrailingSlash(Astro.url.pathname).endsWith(page.id);
+
+      return (
+        <li>
+          <a
+            href={`/v2/projects/${page.id}`}
+            class:list={[
+              "group block rounded-md px-2 py-2 transition-all duration-200",
+              "hover:bg-accent hover:text-accent-foreground",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+              {
+                "bg-muted text-accent-foreground font-medium border-l-2 border-muted-foreground": isActive,
+                "text-muted-foreground hover:text-foreground": !isActive,
+              }
+            ]}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            <div class="flex items-center gap-3">
+              {page.data.icon && (
+                <span
+                  class:list={[
+                    "text-xl mt-0.5 shrink-0 transition-transform group-hover:scale-110",
+                    isActive ? "opacity-100" : "opacity-70"
+                  ]}
+                  aria-hidden="true"
+                >
+                    <Icon name={page.data.icon}/>
+                </span>
+              )}
+
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class:list={[
+                    "text-sm font-medium",
+                    isActive && "text-foreground"
+                  ]}>
+                    {page.data.title}
+                  </span>
+
+                  {!removeTrailingSlash(page.id).includes("/") && (
+                    <span class="inline-flex items-center rounded-md bg-muted/10 px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20">
+                      Index
+                    </span>
+                  )}
+                </div>
+
+                <p class="text-xs text-muted-foreground line-clamp-1">
+                  {page.data.description}
+                </p>
+
+              </div>
+            </div>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
