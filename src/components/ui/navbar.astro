@@ -35,7 +35,7 @@ const endLinks = [
 
 <header
   class:list={[
-    "backdrop-blur-sm",
+    "backdrop-blur-sm font-mono",
     sticky ? "sticky top-3 z-40" : "py-3"
   ]}
 >
@@ -64,7 +64,7 @@ const endLinks = [
           {middleLinks.map((link) => (
             <li>
               <a
-                class="flex items-center gap-x-2 px-3 py-2 text-sm font-medium text-foreground"
+                class="flex items-center gap-x-2 px-3 py-2 text-sm font-medium text-foreground hover:opacity-70 transition-opacity"
                 href={link.href}
               >
                 <Icon name={link.icon} />
@@ -81,9 +81,10 @@ const endLinks = [
           {endLinks.map((link) => (
             <Button
               href={link.href}
-              title={link.title || link.title}
+              title={link.title}
               variant="ghost"
-              size="icon"
+              size="icon-sm"
+              class="hover:opacity-70 transition-opacity"
             >
               <Icon name={link.icon}/>
             </Button>
