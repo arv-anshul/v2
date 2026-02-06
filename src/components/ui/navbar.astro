@@ -5,14 +5,12 @@ import OmSvg from "public/favicon.svg";
 import { ThemeToggle } from "@/components/starwind/theme-toggle";
 import Button from "../starwind/button";
 
-// Props
 interface Props {
   sticky?: boolean;
 }
 
 const { sticky = false } = Astro.props;
 
-// Define your navigation links here
 const homeLink = {
   href: "/v2",
   title: "ARV",
@@ -37,7 +35,7 @@ const endLinks = [
 <header
   class:list={[
     "backdrop-blur-sm",
-    sticky? "sticky top-3 z-40" : "py-3"
+    sticky ? "sticky top-3 z-40" : "py-3"
   ]}
 >
   <div class="max-w-7xl mx-auto px-4 xl:px-0">
@@ -49,7 +47,7 @@ const endLinks = [
         <a
           href={homeLink.href}
           title={homeLink.title}
-          class="flex items-center gap-1"
+          class="flex items-center"
         >
           <OmSvg
             class="fill-foreground stroke-foreground"
@@ -91,151 +89,8 @@ const endLinks = [
           ))}
 
           <ThemeToggle size="sm" />
-
-          <!-- Mobile Menu Button -->
-          <!-- TODO: Remove this toggling behavior for mobiles instead use one nav strip only -->
-          <Button
-            type="button"
-            id="mobile-menu-button"
-            aria-title="Open menu"
-            class="hidden"
-            title="Open menu"
-            variant="outline"
-            size="icon"
-          >
-            <Icon name="lucide:menu" />
-          </Button>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile Menu -->
-  <div
-    id="mobile-menu"
-    class="fixed inset-0 z-50 hidden bg-black/50 lg:hidden"
-    aria-hidden="true"
-  >
-    <div
-      class="fixed right-0 top-0 h-full w-full max-w-sm shadow-xl transform transition-transform duration-300 ease-in-out"
-    >
-      <div class="flex flex-col ">
-        <!-- Mobile Menu Header -->
-        <div class="flex items-center justify-between p-4 border-b">
-          <a
-            href={homeLink.href}
-            title={homeLink.title}
-            class="flex items-center gap-1"
-          >
-            <OmSvg
-              class="fill-forstroke stroke-foreground"
-              height="30"
-              width="30"
-            />
-          </a>
-          <Button
-            type="button"
-            id="mobile-menu-close"
-            aria-title="Close menu"
-            variant="ghost"
-            size="icon"
-          >
-            <Icon name="lucide:x" />
-          </Button>
-        </div>
-
-        <!-- Mobile Menu Links -->
-        <nav
-          class="flex-1 overflow-y-auto p-4 bg-background rounded-bl-xl border"
-        >
-          <ul class="space-y-2">
-            {middleLinks.map((link) => (
-              <li>
-                <Button
-                  href={link.href}
-                  class="w-full border"
-                  variant="ghost"
-                >
-                  <Icon name={link.icon} />
-                  {link.title}
-                </Button>
-              </li>
-            ))}
-          </ul>
-
-          <!-- Mobile End Links -->
-          <div class="mt-6 pt-6 border-t space-y-2">
-            {endLinks.map((link) => (
-              <Button
-                href={link.href}
-                class="w-full"
-                variant="outline"
-              >
-                <Icon name={link.icon} />
-                {link.title}
-              </Button>
-            ))}
-          </div>
-        </nav>
       </div>
     </div>
   </div>
 </header>
-
-<script>
-  // Mobile menu functionality
-  const menuButton = document.getElementById("mobile-menu-button");
-  const menuClose = document.getElementById("mobile-menu-close");
-  const mobileMenu = document.getElementById("mobile-menu");
-
-  function openMenu() {
-    if (mobileMenu) {
-      mobileMenu.classList.remove("hidden");
-      document.body.style.overflow = "hidden";
-    }
-  }
-
-  function closeMenu() {
-    if (mobileMenu) {
-      mobileMenu.classList.add("hidden");
-      document.body.style.overflow = "";
-    }
-  }
-
-  // Event listeners
-  menuButton?.addEventListener("click", openMenu);
-  menuClose?.addEventListener("click", closeMenu);
-
-  // Close menu when clicking outside
-  mobileMenu?.addEventListener("click", (e) => {
-    if (e.target === mobileMenu) {
-      closeMenu();
-    }
-  });
-
-  // Close menu on escape key
-  document.addEventListener("keydown", (e) => {
-    if (
-      e.key === "Escape" &&
-      mobileMenu &&
-      !mobileMenu.classList.contains("hidden")
-    ) {
-      closeMenu();
-    }
-  });
-
-  // Close menu when navigating (for same-page links)
-  const mobileMenuLinks = mobileMenu?.querySelectorAll("a");
-  for (const link of mobileMenuLinks || []) {
-    link.addEventListener("click", () => {
-      setTimeout(closeMenu, 100);
-    });
-  }
-</script>
-
-<style>
-  /* Prevent scroll when mobile menu is open */
-  body.menu-open {
-    overflow: hidden;
-  }
-</style>
