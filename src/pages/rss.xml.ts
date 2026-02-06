@@ -9,6 +9,9 @@ export async function GET(context: RSSOptions) {
   const parser = new MarkdownIt();
   parser.use(
     await Shiki({
+      langAlias: {
+        math: "latex",
+      },
       themes: {
         light: "light-plus",
         dark: "dark-plus",

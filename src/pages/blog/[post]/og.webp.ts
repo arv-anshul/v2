@@ -5,6 +5,7 @@ import { fetchResources } from "@takumi-rs/helpers";
 import { fromJsx } from "@takumi-rs/helpers/jsx";
 import type { GetStaticPaths } from "astro";
 import { html } from "satori-html";
+import { getBlogSlugs } from "@/lib/blog-utils";
 import getIconSVGString from "@/lib/icon-svg";
 
 async function getImageBuffer(url: string, data: InferEntrySchema<"blog">) {
@@ -61,10 +62,13 @@ async function getImageBuffer(url: string, data: InferEntrySchema<"blog">) {
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { post: post.id },
-    props: post.data,
-  }));
+  return posts.map((post) => {
+    const slugs = getBlogSlugs(post.id);
+    return {
+      params: { post: slugs.pop() },
+      props: post.data,
+    };
+  });
 }) satisfies GetStaticPaths;
 
 export const GET = async ({
