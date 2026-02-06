@@ -3,7 +3,9 @@ title: Channel Recommender System
 description: Recommend channels using channel's videos titles and videos tags.
 ---
 
-I've built `contentType` prediction pipeline using videos titles. Now, I am thinking that what if I can recommend similar channels on the basis of their subscribed channels. I can recommend channels using channel's videos titles and videos tags.
+I've built `contentType` prediction pipeline using videos titles. Now, I am thinking that what if I can recommend
+similar channels on the basis of their subscribed channels. I can recommend channels using channel's videos titles and
+videos tags.
 
 ## Training Pipeline
 
@@ -11,11 +13,14 @@ I've built `contentType` prediction pipeline using videos titles. Now, I am thin
 
 - System import data from two types of sources `#!py "db"` (database) and `#!py "file"` (local file).
 - Next, I validate the data on the basis of columns present in the data.
-- Then data goes for preprocessing step, during this step data is being clean and all the required feature has been extracted from it using [:simple-polars:{ title="Polars" }](https://pola.rs){ target=blank\_ } library.
+- Then data goes for preprocessing step, during this step data is being clean and all the required feature has been
+  extracted from it using [:simple-polars:{ title="Polars" }](https://pola.rs){ target=blank\_ } library.
 
 ### Model Overview
 
-As you know I am working with videos title and tags which are are textual data so I've used `TfidfVectorizer` (for text to vector conversion). I've used two `TfidfVectorizer` for each column (`title` and `tags`) and then used `ColumnTransformer` to create a (sort of) chain transformation step.
+As you know I am working with videos title and tags which are are textual data so I've used `TfidfVectorizer` (for text
+to vector conversion). I've used two `TfidfVectorizer` for each column (`title` and `tags`) and then used
+`ColumnTransformer` to create a (sort of) chain transformation step.
 
 ```python
 def get_vectorizer() -> ColumnTransformer:
@@ -42,8 +47,10 @@ def get_vectorizer() -> ColumnTransformer:
 
 ### Data to Export
 
-Now, I've successfully built the pipeline and trained the system but there comes a question that how to reccommend a channel and for that I've to export some essential data like **the vectorized array** (vectorized videos titles and tags) with its metadata like `channelId` and `channelTitle`.
-To tackle this thing I've combine these data and created a `pl.DataFrame` and then export it as **`parquet`** format.
+Now, I've successfully built the pipeline and trained the system but there comes a question that how to reccommend a
+channel and for that I've to export some essential data like **the vectorized array** (vectorized videos titles and
+tags) with its metadata like `channelId` and `channelTitle`. To tackle this thing I've combine these data and created a
+`pl.DataFrame` and then export it as **`parquet`** format.
 
 ```python
 def training(
@@ -71,10 +78,13 @@ def training(
 
 ## Prediction Pipeline
 
-> I'm calling this step as **Prediction Pipeline** 🙂 because it doesn't feels good to call **Reccommendation Pipeline** 😞.
+> I'm calling this step as **Prediction Pipeline** 🙂 because it doesn't feels good to call **Reccommendation Pipeline**
+> 😞.
 
 Here, I've to get any channel's data (videos titles and tags) to transform using stored `ColumnTransformer` object.
-After, transforming the data I've calculated `cosine_similarity` between new channel's vector and vector which I have stored on training step and from that whichever channel has greater similarity value is being reccommended to the user 🤩.
+After, transforming the data I've calculated `cosine_similarity` between new channel's vector and vector which I have
+stored on training step and from that whichever channel has greater similarity value is being reccommended to the user
+🤩.
 
 ```python
 def prediction(data: pl.DataFrame):
@@ -95,27 +105,41 @@ def prediction(data: pl.DataFrame):
 
 ## Extra
 
-!!! abstract "Reccommendation System Summary" - Ingesting data from database or local file. I had made API endpoint to fetch data from datbase. - Using [:simple-polars:{ .light .hover-icon }](https://pola.rs) Polars library for data manipulation. - This recommender system trained on **Youtube Channel's Videos titles and tags** which means it recommend on the basis of the channel's videos contents like title and tags. - Used `TfidfVectorizer` for text-to-vec conversion.
+!!! abstract "Reccommendation System Summary" - Ingesting data from database or local file. I had made API endpoint to
+fetch data from datbase. - Using [:simple-polars:{ .light .hover-icon }](https://pola.rs) Polars library for data
+manipulation. - This recommender system trained on **Youtube Channel's Videos titles and tags** which means it recommend
+on the basis of the channel's videos contents like title and tags. - Used `TfidfVectorizer` for text-to-vec conversion.
 
 ### Provide Weights to Vectorizer
 
-Previously, I thought that I can add a functionality to provide weights to each vectorizer (`TfidfVectorizer`) to make the system more robust and I had achieved it ([See Notebook](https://github.com/arv-anshul/notebooks/blob/main/yt-watch-history/1.0_ChannelRecoSys.ipynb)) but not feels good while actual implementation because it creates so much objects to store and makes the prediction (recommendation) step complex.
+Previously, I thought that I can add a functionality to provide weights to each vectorizer (`TfidfVectorizer`) to make
+the system more robust and I had achieved it
+([See Notebook](https://github.com/arv-anshul/notebooks/blob/main/yt-watch-history/1.0_ChannelRecoSys.ipynb)) but not
+feels good while actual implementation because it creates so much objects to store and makes the prediction
+(recommendation) step complex.
 
-I have to store each vectorizer, vectorized data (title and tags) and the metadata (`channelId` and `channelTitle`) too which this pipeline complex and hard to keep track of objects.
+I have to store each vectorizer, vectorized data (title and tags) and the metadata (`channelId` and `channelTitle`) too
+which this pipeline complex and hard to keep track of objects.
 
 ### Adding More Features
 
-I have tried to add more features like `categoryName` (channel owner provide category of the video while uploading) and `contentTypePred` (a feature I have predicted using ML) but I found it difficult to implement and it doesn't show much effect while reccommending. That's why I thought a different idea to implement this.
+I have tried to add more features like `categoryName` (channel owner provide category of the video while uploading) and
+`contentTypePred` (a feature I have predicted using ML) but I found it difficult to implement and it doesn't show much
+effect while reccommending. That's why I thought a different idea to implement this.
 
-I can filter the reccommended channels on the basis of `categoryName` and `contentTypePred` in the frontend part (yeah this not the right way of doing this but I'll think about it later).
+I can filter the reccommended channels on the basis of `categoryName` and `contentTypePred` in the frontend part (yeah
+this not the right way of doing this but I'll think about it later).
 
 ---
 
 <div class="grid cards" markdown>
 
-- [:simple-github:{ .lg .light } &nbsp; **Code on GitHub**{ .light }](https://github.com/arv-anshul/yt-watch-history/blob/main/backend/ml/channel_reco){ target=blank\_ }
-- [:simple-jupyter:{ .lg .light } &nbsp; **Pipeline in Notebook**{ .light }](https://github.com/arv-anshul/notebooks/blob/main/yt-watch-history/1.1_ChannelRecoSys.ipynb){ target=blank\_ }
+- [:simple-github:{ .lg .light } &nbsp; **Code on GitHub**{ .light }](https://github.com/arv-anshul/yt-watch-history/blob/main/backend/ml/channel_reco){
+  target=blank\_ }
+- [:simple-jupyter:{ .lg .light } &nbsp; **Pipeline in Notebook**{ .light }](https://github.com/arv-anshul/notebooks/blob/main/yt-watch-history/1.1_ChannelRecoSys.ipynb){
+  target=blank\_ }
 
 </div>
 
-**🙏 Thank You for reading this. I am [Anshul Raj Verma](https://github.com/arv-anshul){ title="Go To Github Profile" } and I am a Data Scientist.**
+**🙏 Thank You for reading this. I am [Anshul Raj Verma](https://github.com/arv-anshul){ title="Go To Github Profile" }
+and I am a Data Scientist.**

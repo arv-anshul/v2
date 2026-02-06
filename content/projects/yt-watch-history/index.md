@@ -22,8 +22,8 @@ icon: simple-icons:youtube
    - **Backend API**: This is a FastAPI app which interacts with MongoDB database where YouTube videos details were
      stored and it also fetches YouTube videos details from official **YouTube Data API** (for this you requires the
      `API_KEY`).
-   - **ML**: Here the code for ML Model were present through they will get trained and do predcitions on user's
-     uploaded data after some preprocessing. The ML Models get served as API through a FastAPI app.
+   - **ML**: Here the code for ML Model were present through they will get trained and do predcitions on user's uploaded
+     data after some preprocessing. The ML Models get served as API through a FastAPI app.
    - **Frontend**: Here all the above components meets and work together to show awesome insights on user's uploaded
      data. This is a streamlit web app where users can upload their watch history data and see insights. Here above API
      services were called to fetch videos details from official YouTube API, to store data in database, to make

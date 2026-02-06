@@ -16,3 +16,10 @@ repos:
         language: system
         types_or: [javascript, jsx, ts, tsx, json, css, astro]
         pass_filenames: false
+
+      - id: dprint
+        name: dprint
+        entry: dprint fmt
+        language: system
+        types: [markdown, mdx, toml, yaml]
+        pass_filenames: false

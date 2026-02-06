@@ -14,15 +14,18 @@ I am building the ContentType Prediction System from scratch, this it is more ro
   <figcaption>ML System Diagram for "ContentType Prediction System"</figcaption>
 </figure>
 
-- I have created custom `sklearn` transformers to transform the datasets. :material-chat-question:{ title="But it is not that good." }
+- I have created custom `sklearn` transformers to transform the datasets. :material-chat-question:{ title="But it is not
+  that good." }
 - I also implemented the model monitoring part using abstraction classes. I do monitoring using `mlfow`.
-- I also write scripts for the reference about how to monitor, train and predict models, through this I want to give you some idea that how does this pipeline works. :material-emoticon-wink:{ title="These scripts are for reference only." }
+- I also write scripts for the reference about how to monitor, train and predict models, through this I want to give you
+  some idea that how does this pipeline works. :material-emoticon-wink:{ title="These scripts are for reference only." }
 
 ## Custom Transformers using `sklearn`
 
 Yesterday, I have learned how to create a custom transformer using `sklearn` API.
 
-I find it very useful and and ver elegant way to create pipelines with it. They are very simple to use and implement when you get it right.
+I find it very useful and and ver elegant way to create pipelines with it. They are very simple to use and implement
+when you get it right.
 
 ??? info "A high level info about custom transformers."
 
@@ -42,7 +45,8 @@ I find it very useful and and ver elegant way to create pipelines with it. They 
 
 {++**1st Draft**++}
 
-I have think a custom monitoring pipeline where you pass the model and params with the training and testing set. Then it calculate the score and log it with `mlflow`.
+I have think a custom monitoring pipeline where you pass the model and params with the training and testing set. Then it
+calculate the score and log it with `mlflow`.
 
 <figure markdown>
   ![mlflow-monitoring-draft-1.png](./assets/mlflow-monitoring-draft-1.png)

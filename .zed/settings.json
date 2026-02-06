@@ -56,6 +56,27 @@
         "source.fixAll.biome": true,
         "source.organizeImports.biome": true
       }
+    },
+    "Markdown": {
+      "formatter": {
+        "language_server": {
+          "name": "dprint"
+        }
+      }
+    },
+    "TOML": {
+      "formatter": {
+        "language_server": {
+          "name": "dprint"
+        }
+      }
+    },
+    "YAML": {
+      "formatter": {
+        "language_server": {
+          "name": "dprint"
+        }
+      }
     }
   }
 }
