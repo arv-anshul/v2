@@ -5,7 +5,7 @@ import { glob } from "astro/loaders";
 // import { iconSchema } from "@/lib/data-loaders/common";
 const iconSchema = z
   .string()
-  .regex(/^(lucide:|simple-icons:)/)
+  .regex(/^(octicon:|mdi:|lucide:|simple-icons:)/)
   .toLowerCase();
 
 /**

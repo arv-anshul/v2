@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const iconSchema = z
   .string()
-  .regex(/^(lucide:|simple-icons:)/)
+  .regex(/^(octicon:|mdi:|lucide:|simple-icons:)/)
   .lowercase();
 
 export const socialProfileSchema = z.object({

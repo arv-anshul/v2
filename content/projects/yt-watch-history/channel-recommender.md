@@ -1,8 +1,8 @@
 ---
-title: Channel Recommender System
-description: Recommend channels using channel's videos titles and videos tags.
 pubDate: 2024-01-21
-icon: simple-icons:youtube
+icon: simple-icons:scikitlearn
+title: Channel Recommender System
+description: A recommender system to recommend channel similar Youtube channels based viewer's videos' data.
 categories: [project, recommender-system, ml]
 ---
 
@@ -14,18 +14,18 @@ videos tags.
 
 ### Data Ingestion and Preprocessing
 
-- System import data from two types of sources `#!py "db"` (database) and `#!py "file"` (local file).
+- System import data from two types of sources `db` (database) and `file` (local file).
 - Next, I validate the data on the basis of columns present in the data.
 - Then data goes for preprocessing step, during this step data is being clean and all the required feature has been
-  extracted from it using [:simple-polars:{ title="Polars" }](https://pola.rs){ target=blank\_ } library.
+  extracted from it using [Polars](https://pola.rs) library.
 
 ### Model Overview
 
-As you know I am working with videos title and tags which are are textual data so I've used `TfidfVectorizer` (for text
-to vector conversion). I've used two `TfidfVectorizer` for each column (`title` and `tags`) and then used
+As you know I am working with videos title and tags which are textual data so I've used `TfidfVectorizer` (for text to
+vector conversion). I've used two `TfidfVectorizer` for each column (`title` and `tags`) and then used
 `ColumnTransformer` to create a (sort of) chain transformation step.
 
-```python
+```python title="channel_reco/steps/model.py"
 def get_vectorizer() -> ColumnTransformer:
     title_transformer = TfidfVectorizer(
         max_features=7000,
@@ -50,12 +50,12 @@ def get_vectorizer() -> ColumnTransformer:
 
 ### Data to Export
 
-Now, I've successfully built the pipeline and trained the system but there comes a question that how to reccommend a
+Now, I've successfully built the pipeline and trained the system but there comes a question that how to recommend a
 channel and for that I've to export some essential data like **the vectorized array** (vectorized videos titles and
 tags) with its metadata like `channelId` and `channelTitle`. To tackle this thing I've combine these data and created a
 `pl.DataFrame` and then export it as **`parquet`** format.
 
-```python
+```python title="channel_reco/steps/training.py"
 def training(
     input_data: Literal["db", "file"],
 ):
@@ -75,9 +75,10 @@ def training(
     title_tags_trf_df.write_parquet(CH_RECO_TRANSFORMER_DATA_PATH)
 ```
 
-!!! info "What is `parquet` format?"
-
-    Parquet is a columnar storage format that provides compression benefits and is particularly suitable for analytical queries.
+> [!INFO] What is `parquet` format?
+>
+> Parquet is a columnar storage format that provides compression benefits and is particularly suitable for analytical
+> queries.
 
 ## Prediction Pipeline
 
@@ -89,7 +90,7 @@ After, transforming the data I've calculated `cosine_similarity` between new cha
 stored on training step and from that whichever channel has greater similarity value is being reccommended to the user
 🤩.
 
-```python
+```python title="channel_reco/steps/pipeline.py"
 def prediction(data: pl.DataFrame):
     # Extra code hidden...
 
@@ -108,10 +109,13 @@ def prediction(data: pl.DataFrame):
 
 ## Extra
 
-!!! abstract "Reccommendation System Summary" - Ingesting data from database or local file. I had made API endpoint to
-fetch data from datbase. - Using [:simple-polars:{ .light .hover-icon }](https://pola.rs) Polars library for data
-manipulation. - This recommender system trained on **Youtube Channel's Videos titles and tags** which means it recommend
-on the basis of the channel's videos contents like title and tags. - Used `TfidfVectorizer` for text-to-vec conversion.
+> [!NOTE] Recommendation System Summary
+>
+> - Ingesting data from database or local file. I had made API endpoint to fetch data from datbase.
+> - Using Polars library for data manipulation.
+> - This recommender system trained on **YouTube Channel's Videos titles and tags** which means it recommend on the
+>   basis of the channel's videos contents like title and tags.
+> - Used `TfidfVectorizer` for text-to-vec conversion.
 
 ### Provide Weights to Vectorizer
 
@@ -124,25 +128,19 @@ feels good while actual implementation because it creates so much objects to sto
 I have to store each vectorizer, vectorized data (title and tags) and the metadata (`channelId` and `channelTitle`) too
 which this pipeline complex and hard to keep track of objects.
 
-### Adding More Features
+### Adding more Features
 
 I have tried to add more features like `categoryName` (channel owner provide category of the video while uploading) and
 `contentTypePred` (a feature I have predicted using ML) but I found it difficult to implement and it doesn't show much
-effect while reccommending. That's why I thought a different idea to implement this.
+affect while recommending. That's why I thought a different idea to implement this.
 
-I can filter the reccommended channels on the basis of `categoryName` and `contentTypePred` in the frontend part (yeah
+I can filter the recommended channels on the basis of `categoryName` and `contentTypePred` in the frontend part (yeah
 this not the right way of doing this but I'll think about it later).
 
 ---
 
-<div class="grid cards" markdown>
+- [**Code on GitHub**](https://github.com/arv-anshul/yt-watch-history/blob/main/backend/ml/channel_reco)
+- [**Pipeline in Notebook**](https://github.com/arv-anshul/notebooks/blob/main/yt-watch-history/1.1_ChannelRecoSys.ipynb)
 
-- [:simple-github:{ .lg .light } &nbsp; **Code on GitHub**{ .light }](https://github.com/arv-anshul/yt-watch-history/blob/main/backend/ml/channel_reco){
-  target=blank\_ }
-- [:simple-jupyter:{ .lg .light } &nbsp; **Pipeline in Notebook**{ .light }](https://github.com/arv-anshul/notebooks/blob/main/yt-watch-history/1.1_ChannelRecoSys.ipynb){
-  target=blank\_ }
-
-</div>
-
-**🙏 Thank You for reading this. I am [Anshul Raj Verma](https://github.com/arv-anshul){ title="Go To Github Profile" }
-and I am a Data Scientist.**
+**🙏 Thank You for reading this. I am [Anshul Raj Verma](https://github.com/arv-anshul "Go To Github Profile") and I am
+a Data Scientist.**

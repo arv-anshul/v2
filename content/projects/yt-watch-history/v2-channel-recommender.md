@@ -1,24 +1,18 @@
 ---
+pubDate: 2024-01-21
+icon: simple-icons:scikitlearn
 title: Channel Recommender System V2
 description: Channel Recommender System using YT channel's videos title and tags.
-pubDate: 2024-01-21
-icon: simple-icons:youtube
-categories: [project, recommender-system, ml, youtube]
+categories: [project, ml, recommender-system]
 ---
-
-# Channel Recommender System V2
 
 The system starts with preprocessing the video titles and tags by tokenizing, removing stop words, and
 stemming/lemmatizing them. Then, these texts are vectorized using TF-IDF to convert them into numerical form. The
 feature vectors are used to calculate similarities between channels using cosine similarity. The channels are ranked
 based on these similarity scores, and the top-N channels are recommended to the user.
 
-{==
-
-This approach leverages the content-based filtering technique to find and recommend channels that have similar video
-titles and tags to those the user has already watched, ensuring relevant and personalized recommendations.
-
-==}
+> This approach leverages the content-based filtering technique to find and recommend channels that have similar video
+> titles and tags to those the user has already watched, ensuring relevant and personalized recommendations.
 
 ## Approach Layers
 
