@@ -1,8 +1,9 @@
 ---
 title: YouTube Watch History
 description: Hi form Yout
-date: 2024-01-21
+pubDate: 2024-01-21
 icon: simple-icons:youtube
+categories: [project, recommender-system, ml]
 ---
 
 ## Explanation

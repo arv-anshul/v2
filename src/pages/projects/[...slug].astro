@@ -1,5 +1,10 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
+import {
+  type CollectionEntry,
+  getCollection,
+  type InferEntrySchema,
+  render,
+} from "astro:content";
 import type { GetStaticPaths } from "astro";
 import NestedPagesList from "@/components/nested-pages-list.astro";
 import Prose from "@/components/starwind/prose";
@@ -9,7 +14,7 @@ interface Props {
   project: CollectionEntry<"projects">;
   nestedPages: {
     id: string;
-    data: CollectionEntry<"projects">["data"];
+    data: InferEntrySchema<"projects">;
   }[];
 }
 

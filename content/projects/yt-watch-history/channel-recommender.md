@@ -1,6 +1,9 @@
 ---
 title: Channel Recommender System
 description: Recommend channels using channel's videos titles and videos tags.
+pubDate: 2024-01-21
+icon: simple-icons:youtube
+categories: [project, recommender-system, ml]
 ---
 
 I've built `contentType` prediction pipeline using videos titles. Now, I am thinking that what if I can recommend

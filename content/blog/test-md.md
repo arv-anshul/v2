@@ -2,8 +2,9 @@
 title: Test Markdown
 description: Testing the Astro application with Markdown document.
 icon: simple-icons:markdown
-date: 2026-02-06
+pubDate: 2026-02-06
 author: Anshul Raj Verma
+categories: [blog, test]
 ---
 
 # Welcome to Markdown!

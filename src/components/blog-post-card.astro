@@ -30,7 +30,7 @@ const { frontmatter, class: className, ...props } = Astro.props as Props;
       <p class="flex gap-3 text-muted-foreground text-xs">
         <span class="flex gap-0.5">
           <Icon name="lucide:calendar" size={15} />
-          {frontmatter.date.toLocaleDateString("en-IN", {
+          {frontmatter.pubDate.toLocaleDateString("en-IN", {
             year: "numeric",
             month: "short",
             day: "2-digit",

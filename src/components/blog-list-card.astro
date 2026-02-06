@@ -1,4 +1,5 @@
 ---
+import type { InferEntrySchema } from "astro:content";
 import type { HTMLAttributes } from "astro/types";
 import { Icon } from "astro-icon/components";
 import {
@@ -9,16 +10,8 @@ import {
   ItemTitle,
 } from "@/components/starwind/item";
 
-interface BlogData {
-  title: string;
-  description: string;
-  date: Date;
-  icon: string;
-  author: string;
-}
-
 interface Props extends HTMLAttributes<"a"> {
-  data: BlogData;
+  data: InferEntrySchema<"blog">;
 }
 
 const { data, class: className, ...props } = Astro.props as Props;
@@ -38,7 +31,7 @@ const { data, class: className, ...props } = Astro.props as Props;
       <p class="flex gap-3 text-xs text-muted-foreground">
         <span class="flex gap-0.5" title="Published Date">
           <Icon name="lucide:calendar" size={15} />
-          {data.date.toLocaleDateString("en-IN", {
+          {data.pubDate.toLocaleDateString("en-IN", {
             year: "numeric",
             month: "short",
             day: "2-digit",

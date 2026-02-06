@@ -1,8 +1,9 @@
 ---
 title: ContentType Prediction
 description: ContentType Prediction System from scratch
-date: 2024-01-27
+pubDate: 2024-01-27
 icon: lucide:rocket
+categories: [project, recommender-system, ml]
 ---
 
 # :simple-scikitlearn:{ title="2024-01-27" } ContentType Prediction

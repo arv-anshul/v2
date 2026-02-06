@@ -1,4 +1,5 @@
-import { type CollectionEntry, getCollection } from "astro:content";
+import type { InferEntrySchema } from "astro:content";
+import { getCollection } from "astro:content";
 import { extractResourceUrls, Renderer } from "@takumi-rs/core";
 import { fetchResources } from "@takumi-rs/helpers";
 import { fromJsx } from "@takumi-rs/helpers/jsx";
@@ -6,10 +7,7 @@ import type { GetStaticPaths } from "astro";
 import { html } from "satori-html";
 import getIconSVGString from "@/lib/icon-svg";
 
-async function getImageBuffer(
-  url: string,
-  data: CollectionEntry<"blog">["data"]
-) {
+async function getImageBuffer(url: string, data: InferEntrySchema<"blog">) {
   // Convert <svg> component into data URI to render it via <img> tag
   const calendarIcon = await getIconSVGString("lucide:calendar");
   const calendarIconUri = `data:image/svg+xml,${encodeURIComponent(calendarIcon.replace(/currentColor/g, "#a1a1aa"))}`;
@@ -30,7 +28,7 @@ async function getImageBuffer(
             <h1 tw="text-7xl mt-0 mb-2 font-bold text-white leading-tight">${data.title}</h1>
             <div tw="flex gap-2 items-center text-zinc-400">
               <img src="${calendarIconUri}" tw="h-6 w-6" />
-              <span tw="text-lg mr-4"> ${data.date.toLocaleDateString("en-IN", { year: "numeric", month: "short", day: "2-digit" })} </span>
+              <span tw="text-lg mr-4"> ${data.pubDate.toLocaleDateString("en-IN", { year: "numeric", month: "short", day: "2-digit" })} </span>
               <img src="${userIconUri}" tw="h-6 w-6" />
               <span tw="text-lg">${data.author}</span>
             </div>
@@ -73,7 +71,7 @@ export const GET = async ({
   request,
   props,
 }: {
-  props: CollectionEntry<"blog">["data"];
+  props: InferEntrySchema<"blog">;
   request: Request;
 }) => {
   const imageBuffer = await getImageBuffer(request.url, props);

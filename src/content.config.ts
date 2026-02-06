@@ -8,27 +8,26 @@ const iconSchema = z
   .regex(/^(lucide:|simple-icons:)/)
   .toLowerCase();
 
+/**
+ * This is a subset of `@astrojs/rss`'s `rssSchema` schema.
+ */
+const BASE_COLLECTION_SCHEMA = z.object({
+  title: z.string(),
+  description: z.string(),
+  icon: iconSchema,
+  author: z.enum(["Anshul Raj Verma"] as const).default("Anshul Raj Verma"),
+  pubDate: z.date(),
+  categories: z.array(z.string()).min(1),
+});
+
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "content/blog" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    icon: iconSchema,
-    author: z.enum(["Anshul Raj Verma"] as const),
-    date: z.date(),
-  }),
+  schema: BASE_COLLECTION_SCHEMA,
 });
 
 const projects = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "content/projects" }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    // TODO: Use z.httpUrl
-    projectUrl: z.string().optional(),
-    date: z.date().optional(),
-    icon: iconSchema.optional(),
-  }),
+  schema: BASE_COLLECTION_SCHEMA,
 });
 
 export const collections = { blog, projects };

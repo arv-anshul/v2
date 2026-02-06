@@ -1,6 +1,9 @@
 ---
 title: Channel Recommender System V2
 description: Channel Recommender System using YT channel's videos title and tags.
+pubDate: 2024-01-21
+icon: simple-icons:youtube
+categories: [project, recommender-system, ml, youtube]
 ---
 
 # Channel Recommender System V2

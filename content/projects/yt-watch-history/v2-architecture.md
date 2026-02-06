@@ -1,6 +1,9 @@
 ---
 title: Architecture for V2
 description: Defining design architecture for YouTube Watch History V2 project.
+pubDate: 2024-01-21
+icon: simple-icons:youtube
+categories: [project, recommender-system, ml, architecture]
 ---
 
 ## Application Interaction

@@ -1,12 +1,12 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import type { InferEntrySchema } from "astro:content";
 import { removeTrailingForwardSlash } from "@astrojs/internal-helpers/path";
 import type { HTMLAttributes } from "astro/types";
 import { Icon } from "astro-icon/components";
 
 interface Page {
   id: string;
-  data: CollectionEntry<"projects">["data"];
+  data: InferEntrySchema<"projects">;
 }
 
 interface Props extends HTMLAttributes<"nav"> {
@@ -26,8 +26,8 @@ const sortedPages = [...pages].sort((a, b) => {
   }
 
   // Then sort by date if available
-  if (a.data.date && b.data.date) {
-    return b.data.date.getTime() - a.data.date.getTime();
+  if (a.data.pubDate && b.data.pubDate) {
+    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
   }
 
   // Finally sort alphabetically by title
