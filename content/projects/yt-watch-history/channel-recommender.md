@@ -75,7 +75,7 @@ def training(
     title_tags_trf_df.write_parquet(CH_RECO_TRANSFORMER_DATA_PATH)
 ```
 
-> [!INFO] What is `parquet` format?
+> [!IMPORTANT] What is parquet format?
 >
 > Parquet is a columnar storage format that provides compression benefits and is particularly suitable for analytical
 > queries.

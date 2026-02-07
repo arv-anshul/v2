@@ -26,7 +26,7 @@ Yesterday, I have learned how to create a custom transformer using `sklearn` API
 I find it very useful and very elegant way to create pipelines with it. They are very simple to use and implement when
 you get it right.
 
-> [!INFO] A high level info about custom transformers.
+> [!IMPORTANT] A high level info about custom transformers.
 >
 > - Create a class which inherit two `sklearn` classes from `sklearn.base` module `TransformerMixin` and
 >   `BaseEstimator`.
@@ -36,7 +36,7 @@ you get it right.
 > Remember this is not a fully pleged custom class because there are numerous things you have to keep in mind while
 > making a custom transformer using `sklearn` API.
 
-> [!INFO] References
+> [!IMPORTANT] References
 >
 > - [Professional Preprocessing with Pipelines in Python - NeuralNine](https://youtu.be/h1BnRBzYjYY)
 > - [Developing a Custom Scikit-learn Transformer and Estimatior - Ploomber](https://youtu.be/6zAPRfhDg7Q)

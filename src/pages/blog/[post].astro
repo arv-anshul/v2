@@ -5,6 +5,9 @@ import FrontmatterCard from "@/components/frontmatter-card.astro";
 import Prose from "@/components/starwind/prose/Prose.astro";
 import BaseLayout from "@/layouts/base-layout.astro";
 import { getBlogSlugs } from "@/lib/blog-utils";
+import "remark-github-alerts/styles/github-base.css";
+import "remark-github-alerts/styles/github-colors-light.css";
+import "remark-github-alerts/styles/github-colors-dark-class.css";
 
 interface Props {
   post: CollectionEntry<"blog">;

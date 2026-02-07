@@ -10,6 +10,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import remarkGithubAlerts from "remark-github-alerts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,7 +30,7 @@ export default defineConfig({
   },
   markdown: {
     syntaxHighlight: false,
-    remarkPlugins: [[remarkGfm, { singleTilde: false }]],
+    remarkPlugins: [[remarkGfm, { singleTilde: false }], remarkGithubAlerts],
     rehypePlugins: [
       rehypeSlug,
       rehypeAutolinkHeadings,

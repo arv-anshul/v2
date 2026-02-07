@@ -33,6 +33,7 @@
     "rehype-pretty-code": "^0.14.1",
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
+    "remark-github-alerts": "^0.1.1",
     "sanitize-html": "^2.17.0",
     "satori-html": "^0.3.2",
     "shiki": "^3.21.0",

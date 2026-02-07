@@ -192,7 +192,7 @@ for epoch in range(10):
         print(f"Epoch [{epoch+1}/10], Loss: {loss.item():.4f}")
 ```
 
-> [!INFO]
+> [!IMPORTANT]
 > By iteratively performing forward and backward passes over multiple epochs, the network learns the optimal parameters
 > to minimize the loss and generalize to unseen data.
 
