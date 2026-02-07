@@ -62,8 +62,9 @@ const info = await loadInfoData();
       <Image
         alt="arv-anshul"
         class="w-60 rounded-full"
-        inferSize
         src={info.avatar_url}
+        width="300"
+        height="300"
       />
       <h1 class="font-extrabold text-3xl">{info.name}</h1>
       <p class="text-justify md:max-w-2/3">{info.intro_text}</p>

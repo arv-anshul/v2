@@ -29,10 +29,11 @@ const { friend, class: className, ...props } = Astro.props as Props;
 >
   <a href={friend.primary_url} target="_blank" class="h-30 w-30">
     <Image
-      inferSize={true}
       src={friend.avatar}
       alt={`${friend.name} avatar`}
       class="rounded-full object-cover"
+      height="300"
+      width="300"
     />
   </a>
 
