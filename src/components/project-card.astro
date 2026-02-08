@@ -21,8 +21,8 @@ interface Props extends HTMLAttributes<"div"> {
 const { project, class: className, ...props } = Astro.props as Props;
 ---
 
-<Card class:list={["justify-between", className]} {...props}>
-  <CardHeader class="flex flex-wrap justify-between items-start">
+<Card class:list={["pt-4 gap-3 rounded", className]} {...props}>
+  <CardHeader class="flex flex-wrap justify-between items-start px-3 md:px-5">
     <div>
       <CardTitle class="flex items-center gap-1">
         {project.relative_url ?
@@ -40,6 +40,7 @@ const { project, class: className, ...props } = Astro.props as Props;
             variant="outline"
             href={item.url}
             title={item.name}
+            class="w-8 h-8"
             >
               <Icon name={item.icon} title={item.name} />
             </Button>
@@ -47,14 +48,16 @@ const { project, class: className, ...props } = Astro.props as Props;
     </div>
   </CardHeader>
 
-  <CardContent class="text-justify mb-auto">
-    {project.description.length > 320 ? `${project.description.slice(0, 320)}...` : project.description}
+  <CardContent
+    class="text-justify mb-auto px-3 md:px-5 line-clamp-10 md:line-clamp-8"
+  >
+    {project.description}
   </CardContent>
 
-  <CardFooter class="flex-wrap justify-center gap-3 p-4 border-muted">
+  <CardFooter class="flex-wrap justify-center gap-3 p-3 border-muted">
     {project.tech_icons.map((tag) => (
           <span class="inline-flex items-center justify-center">
-              <Icon name={tag} />
+              <Icon name={tag} size="18" />
           </span>
         ))}
   </CardFooter>

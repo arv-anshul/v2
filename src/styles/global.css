@@ -61,13 +61,13 @@
   --color-input: var(--input);
   --color-outline: var(--outline);
 
-  --radius-xs: calc(var(--radius) - 0.375rem);
-  --radius-sm: calc(var(--radius) - 0.25rem);
-  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-xs: calc(var(--radius) - 0.7rem);
+  --radius-sm: calc(var(--radius) - 0.5rem);
+  --radius-md: calc(var(--radius) - 0.25rem);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 0.25rem);
-  --radius-2xl: calc(var(--radius) + 0.5rem);
-  --radius-3xl: calc(var(--radius) + 1rem);
+  --radius-xl: calc(var(--radius) + 0.05rem);
+  --radius-2xl: calc(var(--radius) + 0.25rem);
+  --radius-3xl: calc(var(--radius) + 0.5rem);
 
   --font-heading: var(--font-heading);
   --font-mono: var(--font-mono);
@@ -110,7 +110,7 @@
   --border: var(--color-neutral-200);
   --input: var(--color-neutral-200);
   --outline: var(--color-neutral-400);
-  --radius: 0.625rem;
+  --radius: 0.5rem;
   --font-heading: "Source Serif 4 Variable", var(--font-serif);
   --font-mono: "Geist Mono Variable", monospace;
 

@@ -9,9 +9,11 @@ const posts = await getCollection("blog");
 ---
 
 <BaseLayout title="Blog - ARV" description="Blogs written by ARV.">
-  <main class="flex-1 w-full max-w-350 mx-auto px-4 py-8">
-    <h1 class="font-heading text-4xl font-bold mb-10">Latest Blog Posts</h1>
-    <ItemGroup class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <main class="flex-1 w-full md:w-2/3 mx-auto px-4 pb-8">
+    <h1 class="font-heading text-4xl font-bold mb-8 md:text-center">
+      Latest Blog Posts
+    </h1>
+    <ItemGroup class="grid gap-3 md:grid-cols-2">
       {posts.sort((a, b) => (b.data.pubDate.getTime() - a.data.pubDate.getTime())).map((post) => (
           <FrontmatterCard variant="small" href={`/v2/blog/${getBlogSlugs(post.id).pop()}`} data={post.data} />
         ))}

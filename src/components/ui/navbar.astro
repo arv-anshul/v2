@@ -41,7 +41,7 @@ const endLinks = [
 >
   <div class="max-w-7xl mx-auto px-4 xl:px-0">
     <div
-      class="flex items-center justify-between gap-x-4 rounded-lg py-1 pl-5 pr-2.5 border border-foreground/3 shadow-foreground/50 shadow-xl/10 bg-foreground/10 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:justify-stretch lg:gap-x-12"
+      class="flex items-center justify-between gap-x-2 rounded-lg py-1 px-2 border border-foreground/3 bg-foreground/10 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:justify-stretch lg:gap-x-12"
     >
       <!-- Home/Logo -->
       <div class="flex items-center">
@@ -64,10 +64,10 @@ const endLinks = [
           {middleLinks.map((link) => (
             <li>
               <a
-                class="flex items-center gap-x-2 px-3 py-2 text-sm font-medium text-foreground hover:opacity-70 transition-opacity"
+                class="flex items-center gap-x-2 p-2 text-sm font-medium text-foreground hover:opacity-70 transition-opacity"
                 href={link.href}
               >
-                <Icon name={link.icon} />
+                <Icon name={link.icon} class="hidden md:inline" />
                 {link.title}
               </a>
             </li>

@@ -10,14 +10,16 @@ const { projects } = await loadProjectsData();
   title="Projects - ARV"
   description="See all the project created by Anshul Raj Verma"
 >
-  <div class="mx-auto md:max-w-5/6 w-10/12">
-    <h1 class="font-bold font-heading text-3xl text-center mt-8">Projects</h1>
-    <section class="py-10">
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+  <main class="flex-1 w-full md:w-2/3 mx-auto px-4 pb-8">
+    <h1 class="font-bold font-heading text-3xl md:text-center mb-8">
+      Projects
+    </h1>
+    <section>
+      <div class="grid gap-3 md:grid-cols-2">
         {projects.map((project) => (
                 <ProjectCard project={project} />
               ))}
       </div>
     </section>
-  </div>
+  </main>
 </BaseLayout>
