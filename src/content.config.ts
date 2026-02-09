@@ -16,7 +16,7 @@ const BASE_COLLECTION_SCHEMA = z.object({
   description: z.string(),
   icon: iconSchema,
   author: z.enum(["Anshul Raj Verma"] as const).default("Anshul Raj Verma"),
-  pubDate: z.date(),
+  pubDate: z.coerce.date(),
   categories: z.array(z.string()).min(1),
 });
 
@@ -30,4 +30,9 @@ const projects = defineCollection({
   schema: BASE_COLLECTION_SCHEMA,
 });
 
-export const collections = { blog, projects };
+const journal = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "content/journal" }),
+  schema: BASE_COLLECTION_SCHEMA,
+});
+
+export const collections = { blog, projects, journal };

@@ -21,10 +21,11 @@ Relationship of every input feature must be **linear** with output feature.
 
 ### 2. Multi-Collinearity
 
-!!! question "What is Multi-Collinearity?"
-
-    Multicollinearity is a phenomena where two or more independent variables are highly correlated.
-    In other words, one predictor variable can be used to predict the value of another. This creates redundant information, skewing the results in a regression model.
+> [!WARNING] What is Multi-Collinearity?
+>
+> Multicollinearity is a phenomena where two or more independent variables are highly correlated. In other words, one
+> predictor variable can be used to predict the value of another. This creates redundant information, skewing the
+> results in a regression model.
 
 Input data must not correalate with each other, they must be independent of each other. One can use **VIF**{
 title="Variance Inflation Factor" } or correlation matrices to know whether their input data is correlated.
@@ -33,9 +34,10 @@ title="Variance Inflation Factor" } or correlation matrices to know whether thei
 
 ### 3. Normally Distributed Residuals
 
-!!! question "What are Residuals?"
-
-    Represent the vertical distance between a data point and the regression line. They are the errors of the model which the model can't able to capture while training.
+> [!WARNING] What are Residuals?
+>
+> Represent the vertical distance between a data point and the regression line. They are the errors of the model which
+> the model can't able to capture while training.
 
 The distribution of the residuals must be normally distributed. One can analyse this using **KDE**{ title="Kernel
 Density Estimator Function" } or [QQ-Plot](https://library.virginia.edu/data/articles/understanding-q-q-plots).
@@ -45,22 +47,19 @@ Density Estimator Function" } or [QQ-Plot](https://library.virginia.edu/data/art
 **Homoscedasticity** refers to constant variance in a regression model's residuals. _Cons_ include potential bias and
 inefficiency. Visualize homoscedasticity using scatter plots — residuals vs. predicted values should show an even
 spread, indicating consistent variance. In Python, seaborn or matplotlib can create such plots for regression
-diagnostics. :simple-openai:{ .bounce .secondary }
+diagnostics.
 
 ### 5. No Auto-Correlation Of Error
 
 **Autocorrelation of errors** in regression models refers to the correlation between the error terms at different time
 points or observations. Positive autocorrelation indicates that errors in one period are correlated with errors in
 previous periods. This violates the assumption of independence, impacting model reliability. Diagnostic plots or
-statistical tests, like the Durbin-Watson test, can assess autocorrelation in regression residuals. :simple-openai:{
-.bounce .secondary }
+statistical tests, like the Durbin-Watson test, can assess autocorrelation in regression residuals.
 
-??? abstract "Resources"
-
-    **CampusX**
-
-    1. :simple-youtube:{ .youtube } [What are the main Assumptions of Linear Regression? | Top 5 Assumptions of Linear Regression](https://www.youtube.com/watch?v=EmSNAtcHLm8)
-    2. :simple-jupyter:{ .jupyter } [Presented all 5 assumptions in Notebook](https://github.com/campusx-official/linear-regression-assumptions)
+> [!INFO] Resources
+>
+> 1. [What are the main Assumptions of Linear Regression? | Top 5 Assumptions of Linear Regression](https://www.youtube.com/watch?v=EmSNAtcHLm8)
+> 2. [Presented all 5 assumptions in Notebook](https://github.com/campusx-official/linear-regression-assumptions)
 
 ## Why multi-collinearity is a problem?
 
@@ -74,11 +73,9 @@ isolate the individual effect of each variable, reducing the model's interpretab
 **Removal**: Options include excluding one of the correlated variables, combining them, or using regularization
 techniques like Ridge/Lasso regression that penalize large coefficients.
 
-??? abstract "Resources"
-
-    **CampusX**
-
-    1. :simple-youtube:{ .youtube } [Why Multicollinearity is Bad? What is Multicollinearity? How to detect and remove Multicollinearity](https://www.youtube.com/watch?v=sVJW5UXe84s)
+> [!INFO] Resources
+>
+> 1. [Why Multicollinearity is Bad? What is Multicollinearity? How to detect and remove Multicollinearity](https://www.youtube.com/watch?v=sVJW5UXe84s)
 
 ## Difference b/w "Person Correlation" and Multi-collinearity.
 
@@ -128,27 +125,21 @@ An R-Squared ^^value of 0 means that the model explains or predicts 0% of the re
 independent variables. And a ^^value of 1 indicates that the model predicts 100% of the relationship^^, and a ^^value of
 0.5 indicates that the model predicts 50%^^, and so on.
 
-??? tip "Formula for R Squared"
+### Formula for R Squared
 
-    ```math
-    \text{R}^2 = 1 - \frac{\text{RSS}}{\text{TSS}}
-    ```
+```math
+\text{R}^2 = 1 - \frac{\text{RSS}}{\text{TSS}}
+```
 
-    <figure markdown>
+|              Symbol | Description                  |
+| ------------------: | :--------------------------- |
+| `#!math \text{R}^2` | Coefficient of determination |
+| `#!math \text{RSS}` | Sum of squares of residuals  |
+| `#!math \text{TSS}` | Total sum of squares         |
 
-    | Symbol | Description |
-    | ---: | :--- |
-    | `#!math \text{R}^2` | Coefficient of determination |
-    | `#!math \text{RSS}` | Sum of squares of residuals |
-    | `#!math \text{TSS}` | Total sum of squares |
-
-    </figure>
-
-??? abstract "Resources"
-
-    :simple-freecodecamp:{ .lg } **FreeCodeCamp**
-
-    - :simple-freecodecamp: [What is R Squared? R2 Value Meaning and Definition](https://www.freecodecamp.org/news/what-is-r-squared-r2-value-meaning-and-definition/)
+> [!INFO] Resources
+>
+> - [What is R Squared? R2 Value Meaning and Definition](https://www.freecodecamp.org/news/what-is-r-squared-r2-value-meaning-and-definition/)
 
 ## How is Adjusted R2 score is different from R2 score?
 
@@ -163,9 +154,9 @@ power^^. It helps determine the goodness of fit for a multiple regression model 
 and the sample size. ^^Adjusted R2 penalizes the model for useless variables, while R2 does not^^, making Adjusted R2 a
 more reliable measure of goodness of fit for multiple regression problems. :simple-perplexity:{ .bounce .secondary }
 
-??? abstract "Resources"
-
-    - :material-file-document: [Demystifying R-Squared and Adjusted R-Squared](https://builtin.com/data-science/adjusted-r-squared)
+> [!INFO] Resources
+>
+> - [Demystifying R-Squared and Adjusted R-Squared](https://builtin.com/data-science/adjusted-r-squared)
 
 ## What-if there is one feature related to another then, what should we do with them?
 

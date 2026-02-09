@@ -20,26 +20,32 @@ export async function GET(context: RSSOptions) {
 
   const blog = await getCollection("blog");
   const projects = await getCollection("projects");
+  const journal = await getCollection("journal");
 
-  // Combine both collections
   const allContent = [
-    ...blog.map((post) => ({
-      ...post.data,
-      link: `/v2/blog/${post.id}`,
-      content: sanitizeHtml(parser.render(post.body || ""), {
+    ...blog.map((entry) => ({
+      ...entry.data,
+      categories: ["blog", ...entry.data.categories],
+      link: `/v2/blog/${entry.id}`,
+      content: sanitizeHtml(parser.render(entry.body || ""), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
-      // Add a category or type field to distinguish content types
-      category: "blog",
     })),
-    ...projects.map((project) => ({
-      ...project.data,
-      link: `/v2/projects/${project.id}`,
-      content: sanitizeHtml(parser.render(project.body || ""), {
+    ...journal.map((entry) => ({
+      ...entry.data,
+      categories: ["journal", ...entry.data.categories],
+      link: `/v2/journal/${entry.id}`,
+      content: sanitizeHtml(parser.render(entry.body || ""), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
-      // Add a category or type field
-      category: "project",
+    })),
+    ...projects.map((entry) => ({
+      ...entry.data,
+      categories: ["project", ...entry.data.categories],
+      link: `/v2/projects/${entry.id}`,
+      content: sanitizeHtml(parser.render(entry.body || ""), {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+      }),
     })),
   ];
 

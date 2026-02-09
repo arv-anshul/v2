@@ -76,7 +76,9 @@ const isSmall = variant === "small";
       <Icon
         name={data.icon}
         title={`Blog Icon: ${data.icon}`}
-        class={isSmall ? "size-12" : "size-18"}
+        class:list={[
+          "bg-muted rounded p-2",
+          isSmall ? "size-15" : "size-18"]}
       />
     </ItemMedia>
   </div>
