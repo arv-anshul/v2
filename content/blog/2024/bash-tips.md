@@ -58,12 +58,12 @@ mkdir new-project
 code !$  # Opens the `new-project folder in VSCode
 ```
 
-### Shortcut: <kbd>ctrl</kbd> + <kbd>\</Kbd>
+### Shortcut: <kbd>ctrl</kbd> + <kbd>\\</Kbd>
 
-<kbd>ctrl</kbd> + <kbd>\</kbd> sends `SIGQUIT` (**default behavior:** terminate + produce a core dump) which can be
+<kbd>ctrl</kbd> + <kbd>\\</kbd> sends `SIGQUIT` (**default behavior:** terminate + produce a core dump) which can be
 useful to kill things that normally catch <kbd>ctrl</kbd> + <kbd>c</kbd> (`SIGINT`).
 
-> :fire: <kbd>ctrl</kbd> + <kbd>\</kbd> is more powerful than <kbd>ctrl</kbd> + <kbd>c</kbd>.
+> :fire: <kbd>ctrl</kbd> + <kbd>\\</kbd> is more powerful than <kbd>ctrl</kbd> + <kbd>c</kbd>.
 
 ## Additional Tricks
 
