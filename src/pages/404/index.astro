@@ -5,6 +5,14 @@ import BaseLayout from "@/layouts/base-layout.astro";
 <BaseLayout
   title="404: Not Found - ARV"
   description="Oops! page might be missing."
+  seo={{
+    basic: {
+      title: "404: Not Found",
+      type: "website",
+      image: new URL("/v2/404/og.webp", Astro.url).toString(),
+      url: Astro.url,
+    },
+  }}
 >
   <div
     class="flex flex-col h-[80vh] flex-1 items-center justify-center px-4 py-8 text-center"
