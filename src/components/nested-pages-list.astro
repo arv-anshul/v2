@@ -33,7 +33,7 @@ const sortedPages = [...pages].sort((a, b) => {
 <nav class:list={["rounded-md border border-muted overflow-hidden", className]}>
   <details>
     <summary
-      class="flex items-center gap-2 px-4 py-2.5 cursor-pointer select-none text-sm font-semibold text-foreground bg-muted/50 hover:bg-muted transition-colors duration-200 list-none [&::-webkit-details-marker]:hidden"
+      class="flex items-center gap-2 px-4 py-2.5 cursor-pointer select-none text-sm font-semibold text-foreground bg-muted hover:bg-accent transition-colors duration-200 list-none [&::-webkit-details-marker]:hidden"
     >
       <Icon name="lucide:layers" class="size-4 opacity-70" />
       <span>Related Pages</span>
@@ -48,7 +48,7 @@ const sortedPages = [...pages].sort((a, b) => {
       />
     </summary>
 
-    <ul class="divide-y divide-border/50" role="list">
+    <ul class="divide-y divide-border" role="list">
       {sortedPages.map((page) => {
           const isActive = removeTrailingForwardSlash(
             Astro.url.pathname,
@@ -89,7 +89,7 @@ const sortedPages = [...pages].sort((a, b) => {
                       {page.data.title}
                     </span>
                     {isIndex && (
-                      <span class="font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded-full font-mono font-base text-xs text-primary bg-primary/10 border border-primary/20 leading-none">
+                      <span class="font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded-full font-mono text-xs text-primary bg-muted border border-primary leading-none">
                         Index
                       </span>
                     )}

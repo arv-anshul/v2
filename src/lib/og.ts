@@ -41,7 +41,7 @@ export async function getMarkupFromEntry(
 
   const markup = html`
       <!-- Card -->
-      <div tw="flex flex-col justify-center w-full h-full rounded-3xl border-4 border-zinc-700 bg-zinc-900 p-10 pb-6">
+      <div tw="flex flex-col justify-center w-full h-full rounded-2xl border-4 border-zinc-700 bg-zinc-900 p-10 pb-6">
         <!-- Header row -->
         <div tw="flex justify-between items-start w-full">
           <!-- Title + Meta -->
@@ -55,7 +55,7 @@ export async function getMarkupFromEntry(
             </div>
           </div>
           <!-- Icon -->
-          <div tw="flex items-center justify-center w-32 h-32 rounded-xl bg-zinc-800">
+          <div tw="flex items-center justify-center w-32 h-32 rounded-lg bg-zinc-800">
             <img src="${iconDataUri}" tw="h-24 w-24" />
           </div>
         </div>
@@ -84,9 +84,9 @@ export async function getMarkupFromOgData(url: string, data: OgImageData) {
 
   const markup = html`
       <!-- Card -->
-      <div tw="flex flex-col justify-center items-center w-full h-full rounded-3xl border-4 border-zinc-700 bg-zinc-900 p-10">
+      <div tw="flex flex-col justify-center items-center w-full h-full rounded-2xl border-4 border-zinc-700 bg-zinc-900 p-10">
         <!-- Icon -->
-        <div tw="flex items-center mt-0 mb-0 justify-center w-36 h-36 rounded-xl bg-zinc-800">
+        <div tw="flex items-center mt-0 mb-0 justify-center w-36 h-36 rounded-lg bg-zinc-800">
           <img src="${iconDataUri}" tw="h-28 w-28" />
         </div>
         <!-- Title -->

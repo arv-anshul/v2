@@ -36,19 +36,19 @@ const { friend, class: className, ...props } = Astro.props as Props;
     <CardDescription class="text-sm">{friend.profession}</CardDescription>
   </CardContent>
 
-  <CardDescription class="text-sm leading-relaxed text-foreground px-3 mb-auto">
+  <CardDescription class="text-sm leading-relaxed text-foreground px-4 mb-auto">
     {friend.description}
   </CardDescription>
 
   <CardFooter
-    class="flex flex-wrap gap-2 justify-center w-full p-2 border-muted"
+    class="flex flex-wrap gap-2 justify-center w-full p-1 border-t border-muted"
   >
     {friend.socials.map((social) => (
         <Button
           href={social.url}
           title={social.name}
           target="_blank"
-          variant="outline"
+          variant="ghost"
           size="icon-sm"
         >
           <Icon name={social.icon} />

@@ -53,7 +53,10 @@ const isSmall = variant === "small";
   <div class:list={["flex justify-between w-full", !isSmall && "items-start"]}>
     <ItemContent class="flex flex-col gap-1">
       <ItemTitle
-        class:list={["font-heading font-bold", isSmall ? "text-xl" : "text-4xl"]}
+        class:list={[
+          "font-heading font-bold",
+          isSmall ? "text-xl" : "text-4xl",
+        ]}
       >
         {data.title}
       </ItemTitle>
@@ -61,10 +64,10 @@ const isSmall = variant === "small";
         <span class="flex gap-0.5" title="Published Date">
           <Icon name="lucide:calendar" size={15} />
           {data.pubDate.toLocaleDateString("en-IN", {
-            year: "numeric",
-            month: "short",
-            day: "2-digit",
-          })}
+              year: "numeric",
+              month: "short",
+              day: "2-digit",
+            })}
         </span>
         <span class="flex gap-0.5" title="Author">
           <Icon name="lucide:user-pen" size={15} />
@@ -77,8 +80,9 @@ const isSmall = variant === "small";
         name={data.icon}
         title={`Blog Icon: ${data.icon}`}
         class:list={[
-          "rounded p-2",
-          isSmall ? "bg-muted size-15" : "size-18"]}
+          "rounded-md p-2",
+          isSmall ? "bg-muted size-15" : "size-18",
+        ]}
       />
     </ItemMedia>
   </div>

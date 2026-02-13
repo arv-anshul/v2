@@ -64,14 +64,12 @@ const info = await loadInfoData();
         width="300"
         height="300"
       />
-      <h1 class="font-extrabold text-3xl">{info.name}</h1>
+      <h1 class="font-bold text-3xl">{info.name}</h1>
       <p class="text-justify">{info.intro_text}</p>
     </header>
 
     <section class="w-full">
-      <h2 class="font-bold text-2xl text-fd-foreground" id="refer-to">
-        Refer To
-      </h2>
+      <h2 class="font-heading font-bold text-2xl" id="refer-to">Refer To</h2>
 
       <ItemGroup class="grid grid-cols-1 mt-4 gap-4 sm:grid-cols-2">
         {referLinks.map((item) => (
@@ -94,7 +92,7 @@ const info = await loadInfoData();
     </section>
 
     <section class="w-full">
-      <h2 class="prose font-bold text-2xl text-fd-foreground" id="tech-stack">
+      <h2 class="font-heading font-bold text-2xl" id="tech-stack">
         Tech Stack
       </h2>
 
