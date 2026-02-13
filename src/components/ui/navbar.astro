@@ -24,7 +24,6 @@ const middleLinks = [
 ];
 
 const endLinks = [
-  { href: "/v2/rss.xml", title: "RSS Feed", icon: "lucide:rss" },
   { href: "/v2/resume", title: "Resume", icon: "lucide:scroll-text" },
   {
     href: "https://github.com/arv-anshul",
@@ -78,7 +77,7 @@ const endLinks = [
 
       <!-- End Links (Desktop Icons) -->
       <div class="flex items-center gap-x-10 justify-self-end">
-        <div class="flex items-center gap-x-2">
+        <div class="flex items-center gap-x-1">
           {endLinks.map((link) => (
             <Button
               href={link.href}

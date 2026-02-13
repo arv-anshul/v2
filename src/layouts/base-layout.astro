@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import type { HTMLAttributes } from "astro/types";
 import { SEO, type SEOProps } from "astro-seo";
+import Footer from "@/components/ui/footer.astro";
 import Navbar from "@/components/ui/navbar.astro";
 import themeInit from "@/scripts/theme-init.js?raw";
 
@@ -60,5 +61,6 @@ const {
   <body class:list={["relative w-full", className]} {...props}>
     <Navbar sticky={nav.sticky} />
     <slot />
+    <Footer />
   </body>
 </html>
