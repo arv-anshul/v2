@@ -49,6 +49,7 @@ const { Content } = await render(project);
 <BaseLayout
   title={`${project.data.title} - ARV Project`}
   description={project.data.description}
+  class="md:max-w-3/5"
   seo={{
     basic: {
       title: project.data.title,
@@ -63,19 +64,21 @@ const { Content } = await render(project);
     },
   }}
 >
-  <div
-    class="flex flex-col flex-1 mx-auto md:max-w-3/5 items-center justify-center px-4 py-8"
-  >
+  <div class="flex flex-col flex-1 items-center justify-center">
     <FrontmatterCard data={project.data} backPageUrl="/v2/projects" />
-    {nestedPages && <div>
-      <p class="text-bold text-2xl text-center my-4">Related Pages</p>
-      <NestedPagesList
-        pages={nestedPages}
-        class="border rounded border-outline p-4"
-      />
-    </div>}
+    {
+      nestedPages && (
+        <div>
+          <p class="text-bold text-2xl text-center my-4">Related Pages</p>
+          <NestedPagesList
+            pages={nestedPages}
+            class="border rounded border-outline p-4"
+          />
+        </div>
+      )
+    }
 
-    <article class="mt-10 w-full md:max-w-11/12">
+    <article class="mt-10 w-full">
       <Prose class="max-w-auto w-full custom-prose">
         <Content />
       </Prose>

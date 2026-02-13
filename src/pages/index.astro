@@ -54,9 +54,9 @@ const referLinks = [
 const info = await loadInfoData();
 ---
 
-<BaseLayout nav={{sticky: true}} title="Home - ARV">
+<BaseLayout nav={{ sticky: true }} title="Home - ARV">
   <div
-    class="w-full md:w-2/3 mx-auto gap-10 flex flex-1 flex-col items-center justify-center px-4 md:px-0 py-8 text-center"
+    class="gap-10 flex flex-1 flex-col items-center justify-center text-center"
   >
     <div class="flex flex-col items-center gap-5">
       <Image
@@ -76,22 +76,24 @@ const info = await loadInfoData();
       </h2>
 
       <ItemGroup class="grid grid-cols-1 mt-4 gap-4 sm:grid-cols-2">
-        {referLinks.map((item) => (
-        <Item variant="outline" as="a" href={item.url}>
-            <ItemMedia variant="icon" class="border-none rounded">
-              <Icon name={item.icon} />
-          </ItemMedia>
-          <ItemContent class="text-start gap-0">
-            <ItemTitle class="line-clamp-1">
-              {item.title}
-            </ItemTitle>
-            <ItemDescription class="text-xs">{item.description}</ItemDescription>
-          </ItemContent>
-          <ItemContent>
-            <Icon name="lucide:arrow-right" size={18}/>
-          </ItemContent>
-        </Item>
-        ))}
+        {
+          referLinks.map((item) => (
+            <Item variant="outline" as="a" href={item.url}>
+              <ItemMedia variant="icon" class="border-none rounded">
+                <Icon name={item.icon} />
+              </ItemMedia>
+              <ItemContent class="text-start gap-0">
+                <ItemTitle class="line-clamp-1">{item.title}</ItemTitle>
+                <ItemDescription class="text-xs">
+                  {item.description}
+                </ItemDescription>
+              </ItemContent>
+              <ItemContent>
+                <Icon name="lucide:arrow-right" size={18} />
+              </ItemContent>
+            </Item>
+          ))
+        }
       </ItemGroup>
     </div>
 
@@ -101,18 +103,24 @@ const info = await loadInfoData();
       </h2>
 
       <ItemGroup class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        {Object.entries(info.tech_stack).map(([category, items]) => (
-                <Item variant="outline" class="flex flex-col gap-3">
-                <ItemTitle class="font-bold">
-                    {category}
-                </ItemTitle>
-                <ItemDescription class="flex flex-wrap justify-center gap-3">
-                    {items.sort((a, b) => (a.name.localeCompare(b.name))).map((tech) => (
-                        <Icon name={tech.icon} title={tech.icon.split(":")[1]} size={22} />
-                    ))}
-                </ItemDescription>
-                </Item>
-                    ))}
+        {
+          Object.entries(info.tech_stack).map(([category, items]) => (
+            <Item variant="outline" class="flex flex-col gap-3">
+              <ItemTitle class="font-bold">{category}</ItemTitle>
+              <ItemDescription class="flex flex-wrap justify-center gap-3">
+                {items
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((tech) => (
+                    <Icon
+                      name={tech.icon}
+                      title={tech.icon.split(":")[1]}
+                      size={22}
+                    />
+                  ))}
+              </ItemDescription>
+            </Item>
+          ))
+        }
       </ItemGroup>
     </div>
   </div>

@@ -36,11 +36,11 @@ const endLinks = [
 <header
   class:list={[
     "backdrop-blur-sm font-mono bg-foreground/10",
-    sticky ? "sticky top-0 z-40" : ""
+    sticky ? "sticky top-0 z-40" : "",
   ]}
 >
   <div
-    class="flex items-center justify-between md:w-6/8 mx-auto px-4 md:px-0 gap-x-4 py-1"
+    class="flex items-center justify-between md:w-3/4 mx-auto px-4 md:px-0 gap-x-4 py-1"
   >
     <!-- Home/Logo -->
     <div class="flex items-center">
@@ -56,7 +56,8 @@ const endLinks = [
     <!-- Desktop Navigation -->
     <nav class="ml-2 mr-auto">
       <ul class="flex items-center gap-5">
-        {middleLinks.map((link) => (
+        {
+          middleLinks.map((link) => (
             <li>
               <a
                 class="flex items-center gap-x-1 text-sm font-medium text-foreground hover:opacity-70 transition-opacity"
@@ -66,14 +67,16 @@ const endLinks = [
                 {link.title}
               </a>
             </li>
-          ))}
+          ))
+        }
       </ul>
     </nav>
 
     <!-- End Links (Desktop Icons) -->
     <div class="flex items-center gap-x-10 justify-self-end">
       <div class="flex items-center gap-x-1">
-        {endLinks.map((link) => (
+        {
+          endLinks.map((link) => (
             <Button
               href={link.href}
               title={link.title}
@@ -81,9 +84,10 @@ const endLinks = [
               size="icon"
               class="hover:opacity-70 transition-opacity"
             >
-              <Icon name={link.icon}/>
+              <Icon name={link.icon} />
             </Button>
-          ))}
+          ))
+        }
 
         <ThemeToggle size="sm" />
       </div>
