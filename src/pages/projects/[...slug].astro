@@ -66,12 +66,8 @@ const { Content } = await render(project);
 >
   <FrontmatterCard data={project.data} backPageUrl="/v2/projects" />
   {nestedPages && (
-      <section>
-        <h2 class="font-bold text-2xl text-center my-4">Related Pages</h2>
-        <NestedPagesList
-          pages={nestedPages}
-          class="border rounded border-outline p-4"
-        />
+      <section class="my-6">
+        <NestedPagesList pages={nestedPages} />
       </section>
     )}
 

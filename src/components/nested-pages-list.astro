@@ -17,82 +17,91 @@ const { pages, class: className } = Astro.props;
 
 // Sort pages: index first, then by date (newest first) or title
 const sortedPages = [...pages].sort((a, b) => {
-  // Index page always first
   if (!removeTrailingForwardSlash(a.id).includes("/")) {
     return -1;
   }
   if (!removeTrailingForwardSlash(b.id).includes("/")) {
     return 1;
   }
-
-  // Then sort by date if available
   if (a.data.pubDate && b.data.pubDate) {
     return b.data.pubDate.getTime() - a.data.pubDate.getTime();
   }
-
-  // Finally sort alphabetically by title
   return a.data.title.localeCompare(b.data.title);
 });
 ---
 
-<nav class={className}>
-  <ul class="space-y-1" role="list">
-    {sortedPages.map((page) => {
-      const isActive = removeTrailingForwardSlash(Astro.url.pathname).endsWith(page.id);
+<nav class:list={["rounded-md border border-muted overflow-hidden", className]}>
+  <details>
+    <summary
+      class="flex items-center gap-2 px-4 py-2.5 cursor-pointer select-none text-sm font-semibold text-foreground bg-muted/50 hover:bg-muted transition-colors duration-200 list-none [&::-webkit-details-marker]:hidden"
+    >
+      <Icon name="lucide:layers" class="size-4 opacity-70" />
+      <span>Related Pages</span>
+      <span
+        class="ml-auto font-bold text-lg text-muted-foreground leading-none"
+      >
+        {sortedPages.length}
+      </span>
+      <Icon
+        name="lucide:chevron-down"
+        class="size-3.5 shrink-0 transition-transform duration-200 [[open]>&]:rotate-180"
+      />
+    </summary>
 
-      return (
-        <li>
-          <a
-            href={`/v2/projects/${page.id}`}
-            class:list={[
-              "group block rounded px-2 py-2 transition-all duration-200",
-              "hover:bg-accent hover:text-accent-foreground",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-              {
-                "bg-muted text-accent-foreground font-medium": isActive,
-                "text-muted-foreground hover:text-foreground": !isActive,
-              }
-            ]}
-            aria-current={isActive ? 'page' : undefined}
-          >
-            <div class="flex items-center gap-3">
-              {page.data.icon && (
-                <span
-                  class:list={[
-                    "text-xl mt-0.5 shrink-0 transition-transform group-hover:scale-110",
-                    isActive ? "opacity-100 scale-105" : "opacity-70"
-                  ]}
-                  aria-hidden="true"
-                >
-                    <Icon name={page.data.icon}/>
-                </span>
-              )}
+    <ul class="divide-y divide-border/50" role="list">
+      {sortedPages.map((page) => {
+          const isActive = removeTrailingForwardSlash(
+            Astro.url.pathname,
+          ).endsWith(page.id);
+          const isIndex = !removeTrailingForwardSlash(page.id).includes("/");
 
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 flex-wrap">
-                  <span class:list={[
-                    "text-sm font-medium",
-                    isActive && "text-foreground"
-                  ]}>
-                    {page.data.title}
+          return (
+            <li>
+              <a
+                href={`/v2/projects/${page.id}`}
+                class:list={[
+                  "group flex items-start gap-3 px-4 py-3 transition-colors duration-200",
+                  isActive
+                    ? "bg-muted text-foreground"
+                    : "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+                ]}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {page.data.icon && (
+                  <span
+                    class:list={[
+                      "text-xl mt-0.5 shrink-0 transition-transform duration-200 group-hover:scale-110",
+                      isActive ? "opacity-100" : "opacity-60",
+                    ]}
+                    aria-hidden="true"
+                  >
+                    <Icon name={page.data.icon} />
                   </span>
-
-                  {!removeTrailingForwardSlash(page.id).includes("/") && (
-                    <span class="inline-flex items-center rounded-full bg-muted/10 px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20">
-                      Index
+                )}
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span
+                      class:list={[
+                        "text-sm font-medium",
+                        isActive && "text-foreground",
+                      ]}
+                    >
+                      {page.data.title}
                     </span>
-                  )}
+                    {isIndex && (
+                      <span class="font-semibold uppercase tracking-wide px-1.5 py-0.5 rounded-full font-mono font-base text-xs text-primary bg-primary/10 border border-primary/20 leading-none">
+                        Index
+                      </span>
+                    )}
+                  </div>
+                  <p class="text-xs text-muted-foreground line-clamp-1">
+                    {page.data.description}
+                  </p>
                 </div>
-
-                <p class="text-xs text-muted-foreground line-clamp-1">
-                  {page.data.description}
-                </p>
-
-              </div>
-            </div>
-          </a>
-        </li>
-      );
-    })}
-  </ul>
+              </a>
+            </li>
+          );
+        })}
+    </ul>
+  </details>
 </nav>
