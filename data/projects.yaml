@@ -1,6 +1,6 @@
 $schema: https://arv-anshul.github.io/schema/projects_index.json
 projects:
-  - relative_url: /v2/projects/yt-comment-sentiment
+  - relative_url: /website-astro/projects/yt-comment-sentiment
     title: YouTube Comment Sentiment
     description: |
       An end-to-end machine learning project to predict sentiment of comments on YouTube videos. It uses **NLP** and
@@ -28,7 +28,7 @@ projects:
       - simple-icons:youtube
     completed_on: December, 2024
 
-  - relative_url: /v2/projects/canvas-ai
+  - relative_url: /website-astro/projects/canvas-ai
     title: Canvas AI
     description: |
       Parse and Analyse image containing mathematical expression or problem (it can be in a drawing format) using AI to
@@ -48,7 +48,7 @@ projects:
       - simple-icons:streamlit
     completed_on: September, 2024
 
-  - relative_url: /v2/projects/yt-watch-history
+  - relative_url: /website-astro/projects/yt-watch-history
     title: YouTube Watch History
     description: |
       A streamlit app where you can upload your **YouTube Watch History Data** to see insights on your viewing pattern.
@@ -80,7 +80,7 @@ projects:
       - simple-icons:streamlit
     completed_on: January, 2024
 
-  - relative_url: /v2/projects/spotify-analysis
+  - relative_url: /website-astro/projects/spotify-analysis
     title: Spotify Analysis
     description: |
       Analyse your Spotify Streaming data and get some insights from it like whom & when
@@ -226,7 +226,7 @@ projects:
       - simple-icons:streamlit
     completed_on: October, 2023
 
-  - relative_url: /v2/projects/campusx
+  - relative_url: /website-astro/projects/campusx
     title: CampusX Resources
     description: |
       This project involves gathering data from a course website's HTML structure, followed by developing Python scripts for parsing and extracting essential data. HTTP requests are then made to obtain session resources, with robust testing and data structure maintenance ensuring integrity. Utilizing `mkdocs` and `mkdocs-material`, a web page is generated and hosted on GitHub Pages via CI/CD with GitHub Actions.

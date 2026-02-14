@@ -13,19 +13,27 @@ interface Props {
 const { sticky = false } = Astro.props;
 
 const homeLink = {
-  href: "/v2",
+  href: "/website-astro",
   title: "ARV",
   alt: "Om Logo",
 };
 
 const middleLinks = [
-  { href: "/v2/projects", title: "Projects", icon: "lucide:rocket" },
-  { href: "/v2/blog", title: "Blog", icon: "lucide:newspaper" },
-  { href: "/v2/journal", title: "Journal", icon: "lucide:notebook-pen" },
+  { href: "/website-astro/projects", title: "Projects", icon: "lucide:rocket" },
+  { href: "/website-astro/blog", title: "Blog", icon: "lucide:newspaper" },
+  {
+    href: "/website-astro/journal",
+    title: "Journal",
+    icon: "lucide:notebook-pen",
+  },
 ];
 
 const endLinks = [
-  { href: "/v2/resume", title: "Resume", icon: "lucide:scroll-text" },
+  {
+    href: "/website-astro/resume",
+    title: "Resume",
+    icon: "lucide:scroll-text",
+  },
   {
     href: "https://github.com/arv-anshul",
     title: "GitHub",

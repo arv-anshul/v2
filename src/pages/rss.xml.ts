@@ -26,7 +26,7 @@ export async function GET(context: RSSOptions) {
     ...blog.map((entry) => ({
       ...entry.data,
       categories: ["blog", ...entry.data.categories],
-      link: `/v2/blog/${entry.id}`,
+      link: `/website-astro/blog/${entry.id}`,
       content: sanitizeHtml(parser.render(entry.body || ""), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
@@ -34,7 +34,7 @@ export async function GET(context: RSSOptions) {
     ...journal.map((entry) => ({
       ...entry.data,
       categories: ["journal", ...entry.data.categories],
-      link: `/v2/journal/${entry.id}`,
+      link: `/website-astro/journal/${entry.id}`,
       content: sanitizeHtml(parser.render(entry.body || ""), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
@@ -42,7 +42,7 @@ export async function GET(context: RSSOptions) {
     ...projects.map((entry) => ({
       ...entry.data,
       categories: ["project", ...entry.data.categories],
-      link: `/v2/projects/${entry.id}`,
+      link: `/website-astro/projects/${entry.id}`,
       content: sanitizeHtml(parser.render(entry.body || ""), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),

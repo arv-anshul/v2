@@ -2,6 +2,10 @@
 
 Made with [Bun] + [Astro] + [Tailwind CSS] + [Starwind UI].
 
+> [!IMPORTANT]
+>
+> _**Now this repo is archive as I maintain main website at [arv-anshul.github.io].**_
+
 ## Features
 
 1. Open Graph Image generation using [Takumi].
@@ -29,3 +33,4 @@ Made with [Bun] + [Astro] + [Tailwind CSS] + [Starwind UI].
 [Starwind UI]: https://starwind.dev
 [Tailwind CSS]: https://tailwindcss.com
 [Takumi]: https://takumi.kane.tw
+[arv-anshul.github.io]: https://github.com/arv-anshul/arv-anshul.github.io

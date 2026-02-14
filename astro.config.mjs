@@ -20,7 +20,7 @@ import syncContentAssets from "./src/integrations/sync-content-assets";
 // https://astro.build/config
 export default defineConfig({
   site: "https://arv-anshul.github.io",
-  base: "/v2",
+  base: "/website-astro",
   server: {
     port: 3000,
   },

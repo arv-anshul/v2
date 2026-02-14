@@ -21,7 +21,7 @@ const posts = (await getCollection("blog")).sort(
 );
 
 const totalPages = Math.ceil(posts.length / POSTS_PER_PAGE);
-const basePath = "/v2/blog";
+const basePath = "/website-astro/blog";
 ---
 
 <BaseLayout
@@ -44,7 +44,7 @@ const basePath = "/v2/blog";
             >
               <FrontmatterCard
                 variant="small"
-                href={`/v2/blog/${getBlogSlugs(post.id).pop()}`}
+                href={`/website-astro/blog/${getBlogSlugs(post.id).pop()}`}
                 data={post.data}
               />
             </div>

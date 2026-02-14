@@ -47,7 +47,7 @@ const years: number[] = Object.keys(groupedJournals)
             <div class="flex flex-col items-center">
               {groupedJournals[year].map((journal) => (
                 <a
-                  href={`/v2/journal/${journal.id}`}
+                  href={`/website-astro/journal/${journal.id}`}
                   class="w-fit text-lg hover:text-muted-foreground"
                 >
                   {journal.data.title}

@@ -35,4 +35,4 @@ And hence, the support team cleared the restrictions from my account. :finally:
 
 Thanks.
 
-[See email thread](/diary/page/2026/assets/github-support-emails.pdf)
+[See email thread](/website-astro/blog/2026/assets/github-support-emails.pdf)
