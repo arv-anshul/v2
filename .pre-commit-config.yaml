@@ -31,3 +31,11 @@ repos:
         language: system
         types_or: [markdown, mdx, toml, yaml]
         pass_filenames: false
+
+      - id: build-check
+        name: build check
+        entry: bun run build
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages: [pre-push]

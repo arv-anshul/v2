@@ -2,7 +2,19 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+    paths:
+      - .github/workflows/**
+      - astro.config.mjs
+      - bun.lock
+      - content/**
+      - data/**
+      - package.json
+      - public/**
+      - src/**
+      - starwind.config.json
+      - tsconfig.json
   workflow_dispatch:
 
 permissions:
