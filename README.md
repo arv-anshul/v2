@@ -1,3 +1,5 @@
+
+
 # ARV - Personal Website
 
 Made with [Bun] + [Astro] + [Tailwind CSS] + [Starwind UI].
@@ -26,6 +28,13 @@ Made with [Bun] + [Astro] + [Tailwind CSS] + [Starwind UI].
 | JS Libraries & Packages | ![Iconify](https://img.shields.io/badge/Iconify-026C9C?logo=iconify&logoColor=fff) ![Zod](https://img.shields.io/badge/Zod-408AFF?logo=zod&logoColor=fff)                                                                                                                                                                                                                                                                                |
 | Development Environment | ![Zed Industries](https://img.shields.io/badge/Zed%20Industries-084CCF?logo=zedindustries&logoColor=fff)                                                                                                                                                                                                                                                                                                                                 |
 | CI/CD                   | ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions&logoColor=fff) ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?logo=githubpages&logoColor=fff)                                                                                                                                                                                                                              |
+
+## Usage
+
+- **Install dependencies:** `bun install`
+- **Start dev server:** `bun run dev`
+- **Run linter:** `bun run check`
+- **Auto-fix issues:** `bun run fix`
 
 [Astro]: https://astro.build
 [Bun]: https://bun.sh
